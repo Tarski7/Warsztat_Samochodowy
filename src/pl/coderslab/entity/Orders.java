@@ -3,119 +3,175 @@ package pl.coderslab.entity;
 public class Orders {
 
 	private int id;
-	private String commisioningDate;
-	private String scheduledFixingStartDate;
-	private String fixingStartDate;
-	private String problemDescription;
-	private String fixingDescription;
+	private String dateOfAcceptanceForRepair;
+	private String plannedDateOfStartRepair;
+	private String dateOfStartRepair;
+	private String descriptionOfTheProblem;
+	private String descriptionOfTheRepair;
 	private int status = 0;
-	private double fixingCost;
-	private double usedPartsCost;
-	private double manHoursCost;
-	private int manHoursAmount;
-	private int workerId;
-	private int vehicleId;
+	private double costOfRepair;
+	private double costOfUsedParts;
+	private double costOfOperatingHourOfEmployee;
+	private int numberOfOperatingHours;
+	private int employee_id;
+	private int vehicle_id;
 	
 	
+	
+	
+	
+	public Orders(int id, String dateOfAcceptanceForRepair, String plannedDateOfStartRepair, String dateOfStartRepair,
+			String descriptionOfTheProblem, String descriptionOfTheRepair, int status, double costOfRepair,
+			double costOfUsedParts, double costOfOperatingHourOfEmployee, int numberOfOperatingHours, int employee_id,
+			int vehicle_id) {
+		super();
+		this.id = id;
+		this.dateOfAcceptanceForRepair = dateOfAcceptanceForRepair;
+		this.plannedDateOfStartRepair = plannedDateOfStartRepair;
+		this.dateOfStartRepair = dateOfStartRepair;
+		this.descriptionOfTheProblem = descriptionOfTheProblem;
+		this.descriptionOfTheRepair = descriptionOfTheRepair;
+		setStatus(status);
+		this.costOfRepair = costOfRepair;
+		this.costOfUsedParts = costOfUsedParts;
+		this.costOfOperatingHourOfEmployee = costOfOperatingHourOfEmployee;
+		this.numberOfOperatingHours = numberOfOperatingHours;
+		this.employee_id = employee_id;
+		this.vehicle_id = vehicle_id;
+	}
+
+
 	public Orders() {
 		
 	}
-	
-	public Orders(int id, String commisioningDate, String scheduledFixingStartDate, String fixingStartDate,
-			String problemDescription, String fixingDescription, int status, double fixingCost, double usedPartsCost,
-			double manHoursCost, int manHoursAmount, int workerId, int vehicleId) {
-		super();
-		
-		setCommisioningDate(commisioningDate);
-		setScheduledFixingStartDate(scheduledFixingStartDate);
-		setFixingStartDate(fixingStartDate);
-		setProblemDescription(problemDescription);
-		setFixingDescription(fixingDescription);
-		setStatus(status);
-		setFixingCost(fixingCost);
-		setUsedPartsCost(usedPartsCost);
-		setManHoursCost(manHoursCost);
-		setManHoursAmount(manHoursAmount);
-		setWorkerId(workerId);
-		setVehicleId(vehicleId);
-	}
-	
+
+
 	public int getId() {
 		return id;
 	}
-	
-	public String getCommisioningDate() {
-		return commisioningDate;
+
+
+	public String getDateOfAcceptanceForRepair() {
+		return dateOfAcceptanceForRepair;
 	}
-	public void setCommisioningDate(String commisioningDate) {
-		this.commisioningDate = commisioningDate;
+
+
+	public void setDateOfAcceptanceForRepair(String dateOfAcceptanceForRepair) {
+		this.dateOfAcceptanceForRepair = dateOfAcceptanceForRepair;
 	}
-	public String getScheduledFixingStartDate() {
-		return scheduledFixingStartDate;
+
+
+	public String getPlannedDateOfStartRepair() {
+		return plannedDateOfStartRepair;
 	}
-	public void setScheduledFixingStartDate(String scheduledFixingStartDate) {
-		this.scheduledFixingStartDate = scheduledFixingStartDate;
+
+
+	public void setPlannedDateOfStartRepair(String plannedDateOfStartRepair) {
+		this.plannedDateOfStartRepair = plannedDateOfStartRepair;
 	}
-	public String getFixingStartDate() {
-		return fixingStartDate;
+
+
+	public String getDateOfStartRepair() {
+		return dateOfStartRepair;
 	}
-	public void setFixingStartDate(String fixingStartDate) {
-		this.fixingStartDate = fixingStartDate;
+
+
+	public void setDateOfStartRepair(String dateOfStartRepair) {
+		this.dateOfStartRepair = dateOfStartRepair;
 	}
-	public String getProblemDescription() {
-		return problemDescription;
+
+
+	public String getDescriptionOfTheProblem() {
+		return descriptionOfTheProblem;
 	}
-	public void setProblemDescription(String problemDescription) {
-		this.problemDescription = problemDescription;
+
+
+	public void setDescriptionOfTheProblem(String descriptionOfTheProblem) {
+		this.descriptionOfTheProblem = descriptionOfTheProblem;
 	}
-	public String getFixingDescription() {
-		return fixingDescription;
+
+
+	public String getDescriptionOfTheRepair() {
+		return descriptionOfTheRepair;
 	}
-	public void setFixingDescription(String fixingDescription) {
-		this.fixingDescription = fixingDescription;
+
+
+	public void setDescriptionOfTheRepair(String descriptionOfTheRepair) {
+		this.descriptionOfTheRepair = descriptionOfTheRepair;
 	}
+
+
 	public int getStatus() {
 		return status;
 	}
+
+
+	//Status setter with validation
 	public void setStatus(int status) {
-		if (status >= 1 && status <= 5) {
-			this.status = status;
-		}
+		if (status > 0 && status < 6)
+		this.status = status;
 	}
-	public double getFixingCost() {
-		return fixingCost;
+
+
+	public double getCostOfRepair() {
+		return costOfRepair;
 	}
-	public void setFixingCost(double fixingCost) {
-		this.fixingCost = fixingCost;
+
+
+	public void setCostOfRepair(double costOfRepair) {
+		this.costOfRepair = costOfRepair;
 	}
-	public double getUsedPartsCost() {
-		return usedPartsCost;
+
+
+	public double getCostOfUsedParts() {
+		return costOfUsedParts;
 	}
-	public void setUsedPartsCost(double usedPartsCost) {
-		this.usedPartsCost = usedPartsCost;
+
+
+	public void setCostOfUsedParts(double costOfUsedParts) {
+		this.costOfUsedParts = costOfUsedParts;
 	}
-	public double getManHoursCost() {
-		return manHoursCost;
+
+
+	public double getCostOfOperatingHourOfEmployee() {
+		return costOfOperatingHourOfEmployee;
 	}
-	public void setManHoursCost(double manHoursCost) {
-		this.manHoursCost = manHoursCost;
+
+
+	public void setCostOfOperatingHourOfEmployee(double costOfOperatingHourOfEmployee) {
+		this.costOfOperatingHourOfEmployee = costOfOperatingHourOfEmployee;
 	}
-	public int getManHoursAmount() {
-		return manHoursAmount;
+
+
+	public int getNumberOfOperatingHours() {
+		return numberOfOperatingHours;
 	}
-	public void setManHoursAmount(int manHoursAmount) {
-		this.manHoursAmount = manHoursAmount;
+
+
+	public void setNumberOfOperatingHours(int numberOfOperaingHours) {
+		this.numberOfOperatingHours = numberOfOperaingHours;
 	}
-	public int getWorkerId() {
-		return workerId;
+
+
+	public int getEmployee_id() {
+		return employee_id;
 	}
-	public void setWorkerId(int workerId) {
-		this.workerId = workerId;
+
+
+	public void setEmployee_id(int employee_id) {
+		this.employee_id = employee_id;
 	}
-	public int getVehicleId() {
-		return vehicleId;
+
+
+	public int getVehicle_id() {
+		return vehicle_id;
 	}
-	public void setVehicleId(int vehicleId) {
-		this.vehicleId = vehicleId;
+
+
+	public void setVehicle_id(int vehicle_id) {
+		this.vehicle_id = vehicle_id;
 	}
+	
 }
+	
+	
