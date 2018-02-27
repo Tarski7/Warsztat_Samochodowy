@@ -9,7 +9,7 @@ import java.util.List;
 
 public class DbClient {
 
-	static private final String URL = "jdbc:mysql://sql11.freemysqlhosting.net/?useSSL=false";
+	static private final String URL = "jdbc:mysql://sql11.freemysqlhosting.net/sql11223305?useSSL=false";
 	static private final String USERNAME = "sql11223305";
 	static private final String PASSWORD = "Tt1GjmaCpL";
 	
@@ -21,7 +21,7 @@ public class DbClient {
 			PreparedStatement stmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 			
 			for (int i=1; i<=params.size(); i++) {
-				stmt.setString(i, params.get(i));
+				stmt.setString(i, params.get(i-1));
 			}
 			
 			stmt.executeUpdate();
@@ -34,8 +34,8 @@ public class DbClient {
 		}catch (Exception e) {
 			throw new Exception(e.getMessage());
 		}
-		
 	}
+	
 	
 	//TODO :: Update
 	//TODO :: Delete
