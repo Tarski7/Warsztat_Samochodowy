@@ -62,7 +62,9 @@ public class AddEmployee extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		doGet(request, response);
+		getServletContext()
+	 	.getRequestDispatcher("/WEB-INF/views/alertAddEmployee.jsp")
+	 	.forward(request, response);
 	}
 
 }

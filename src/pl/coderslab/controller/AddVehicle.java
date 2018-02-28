@@ -60,7 +60,9 @@ public class AddVehicle extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		doGet(request, response);
+		getServletContext()
+	 	.getRequestDispatcher("/WEB-INF/views/alertAddVehicle.jsp")
+	 	.forward(request, response);
 	}
 
 }

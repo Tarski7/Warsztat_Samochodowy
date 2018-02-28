@@ -35,9 +35,6 @@ public class DeleteVehicle extends HttpServlet {
 		getServletContext()
 		.getRequestDispatcher("/WEB-INF/views/deleteVehicleForm.jsp")
 		.forward(request, response);
-		
-		PrintWriter pw = response.getWriter();
-		pw.append("Employee has been deleted!");
 	}
 
 	/**
@@ -55,7 +52,9 @@ public class DeleteVehicle extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		doGet(request, response);
+		getServletContext()
+	 	.getRequestDispatcher("/WEB-INF/views/alertDeleteVehicle.jsp")
+	 	.forward(request, response);
 	}
 
 }

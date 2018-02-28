@@ -1,0 +1,7 @@
+<div class="card card-inverse text-center" style="background-color: #333; border-color: #333;">
+  <div class="card-block">
+    <h3 class="card-title">Warsztat samochodowy</h3>
+    <p class="card-text">Projekt warsztatu</p>
+    <a href="http://localhost:8080/Warsztat_Samochodowy/LoadAllEmployees" class="btn btn-primary">List of employees</a>
+  </div>
+</div>
