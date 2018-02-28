@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+<Resource name="jdbc/sql11223305"
+auth="Container"
+type="javax.sql.DataSource"
+username="sql11223305"
+password="Tt1GjmaCpL"
+driverClassName="com.mysql.jdbc.Driver"
+url="jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11223305"
+maxActive="100"
+maxIdle="30"
+maxWait="10000" />
+</Context>
