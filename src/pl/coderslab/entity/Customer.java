@@ -1,46 +1,55 @@
 package pl.coderslab.entity;
 
-public class Client {
-	
+
+import java.util.Date;
+
+
+public class Customer {
+
 	private int id;
 	private String name;
 	private String lastName;
-	private String birthDate;
-	
-	public Client() {
-		
+	private Date dateOfBirth = null;
+
+	public Customer() {
+
 	}
-	
-	public Client(int id, String name, String lastName, String birthDate) {
+
+	public Customer(int id, String name, String lastName, Date dateOfBirth) {
 		super();
 		setName(name);
 		setLastName(lastName);
-		setBirthDate(birthDate);
+		setBirthDate(dateOfBirth);
 	}
 
 	public int getId() {
 		return id;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public String getLastName() {
 		return lastName;
 	}
+
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	public String getBirthDate() {
-		return birthDate;
+
+	public Date getBirthDate() {
+		return dateOfBirth;
 	}
-	public void setBirthDate(String birthDate) {
-		this.birthDate = birthDate;
+
+	public void setBirthDate(Date dateOfBirth) {
+
+		// TODO:: date format validation
+
+		this.dateOfBirth = dateOfBirth;
 	}
-	
-	
-	
 }

@@ -9,20 +9,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import pl.coderslab.dao.ClientDao;
-import pl.coderslab.service.DbClient;
+import pl.coderslab.dao.CustomerDAO;
+import pl.coderslab.service.DatabaseClient;
+
+
 
 /**
  * Servlet implementation class addClientController
  */
-@WebServlet("/add_client")
-public class addClientController extends HttpServlet {
+@WebServlet("/AddCustomer")
+public class AddCustomer extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public addClientController() {
+    public AddCustomer() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,7 +35,7 @@ public class addClientController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		getServletContext()
-		.getRequestDispatcher("/WEB-INF/views/addClientForm.jsp")
+		.getRequestDispatcher("/WEB-INF/views/addCustomerForm.jsp")
 		.forward(request, response);
 		
 	}
@@ -48,15 +50,14 @@ public class addClientController extends HttpServlet {
 		String dateOfBirth = request.getParameter("dateOfBirth");
 		
 		String query = "INSERT INTO CUSTOMER VALUES(default, ?, ?, ?);";
-		List<String> attributes = ClientDao.addClientList(name, lastName, dateOfBirth);
+		List<String> attributes = CustomerDAO.clientAttributesList(name, lastName, dateOfBirth);
 		
 		try {
-		DbClient.add(query, attributes);
+		DatabaseClient.add(query, attributes);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		doGet(request, response);
 	}
-
 }
