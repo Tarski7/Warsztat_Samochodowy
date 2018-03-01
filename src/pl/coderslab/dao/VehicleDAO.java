@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 import pl.coderslab.entity.Vehicle;
-import pl.coderslab.service.DbVehicle;
+import pl.coderslab.service.DatabaseClient;
 
 public class VehicleDAO {
 

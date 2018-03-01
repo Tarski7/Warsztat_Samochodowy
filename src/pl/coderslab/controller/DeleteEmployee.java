@@ -1,7 +1,6 @@
 package pl.coderslab.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import pl.coderslab.service.DbEmployee;
+import pl.coderslab.service.DatabaseClient;
 
 /**
  * Servlet implementation class DeleteEmployee
@@ -46,7 +45,7 @@ public class DeleteEmployee extends HttpServlet {
 		final String query = "DELETE FROM EMPLOYEE WHERE id=?;";
 		
 		try {
-			DbEmployee.delete(query, id);
+			DatabaseClient.delete(query, id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h3>Add a new client</h3>
+<h3>Add a new customer</h3>
 <form action="" method="POST">
 	Name:
 	<input type="text" name="name"><br>

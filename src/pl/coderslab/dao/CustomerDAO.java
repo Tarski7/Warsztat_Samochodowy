@@ -1,11 +1,12 @@
 package pl.coderslab.dao;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClientDao {
+public class CustomerDAO {
 
 	
-	public static List<String> addClientList(String name, String lastName, String dateofBirth) {
+	public static List<String> clientAttributesList(String name, String lastName, String dateofBirth) {
 		
 		List<String> attributes = new ArrayList<>();
 		

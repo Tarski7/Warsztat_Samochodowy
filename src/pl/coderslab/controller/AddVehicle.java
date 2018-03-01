@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import pl.coderslab.dao.VehicleDAO;
-import pl.coderslab.service.DbEmployee;
+import pl.coderslab.service.DatabaseClient;
 
 /**
  * Servlet implementation class AddVehicle
@@ -55,7 +55,7 @@ public class AddVehicle extends HttpServlet {
 		List<String> vehicles = VehicleDAO.addVehicle(model, brand, yearOfProduction, registrationNumber, dateOfNextTechnicalInspection, customerId);
 		
 		try {
-			DbEmployee.add(query, vehicles);
+			DatabaseClient.add(query, vehicles);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

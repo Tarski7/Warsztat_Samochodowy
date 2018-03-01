@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import pl.coderslab.dao.EmployeeDAO;
-import pl.coderslab.service.DbEmployee;
+import pl.coderslab.service.DatabaseClient;
 
 /**
  * Servlet implementation class AddEmployee
@@ -55,7 +55,7 @@ public class AddEmployee extends HttpServlet {
 		List<String> employees = EmployeeDAO.addEmployee(name, surname, address, phoneNumber, note, costOfOperatingHour);
 		
 		try {
-			DbEmployee.add(query, employees);
+			DatabaseClient.add(query, employees);
 			
 			
 		} catch (Exception e) {
