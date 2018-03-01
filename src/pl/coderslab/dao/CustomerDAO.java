@@ -17,4 +17,10 @@ public class CustomerDAO {
 		return attributes;
 	}
 	
+	public static String deleteCustomerQuery() {
+		
+		String query = "DELETE FROM CUSTOMER WHERE id=?";
+		
+		return query;
+	}
 }
