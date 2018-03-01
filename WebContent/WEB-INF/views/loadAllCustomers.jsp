@@ -10,7 +10,6 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha/js/bootstrap.min.js"></script>
 </head>
 <body>
-
 	<table class="table table-inverse table-border">
 	  	<thead>
 	    	<tr>
@@ -19,6 +18,7 @@
 		      <th>Name</th>
 		      <th>Last Name</th>
 		      <th>Date of birth</th> 
+		      <th>Action</th>
 	    	</tr>
 	  	</thead>
 	  	<tbody>
@@ -29,10 +29,15 @@
 				   <td>${customer.name}</td>
 				   <td>${customer.lastName}</td>
 				   <td>${customer.dateOfBirth}</td>
+				   <td><form action="/Warsztat_samochodowy/UpdateCustomerFormLauncher" method="POST">
+  						<button type="submit" name="idToEdit" value="${customer.id}" class="btn-link">Edit</button>
+						</form>
+						<form action="/Warsztat_samochodowy/DeleteCustomer" method="POST">
+  						<button type="submit" name="idToDelete" value="${customer.id}" class="btn-link">Delete</button>
+						</form></td>
 	    		</tr>
 	    	</c:forEach>
 	  	</tbody>
 	</table>
-
 </body>
 </html>

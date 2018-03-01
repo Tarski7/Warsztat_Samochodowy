@@ -7,15 +7,15 @@ import java.util.Date;
 public class Customer {
 
 	private int id;
-	private String name;
-	private String lastName;
-	private Date dateOfBirth = null;
+	private String name = "";
+	private String lastName = "";
+	private String dateOfBirth = null;
 
 	public Customer() {
 
 	}
 
-	public Customer(int id, String name, String lastName, Date dateOfBirth) {
+	public Customer(int id, String name, String lastName, String dateOfBirth) {
 		super();
 		setId(id);
 		setName(name);
@@ -47,11 +47,11 @@ public class Customer {
 		this.lastName = lastName;
 	}
 
-	public Date getDateOfBirth() {
+	public String getDateOfBirth() {
 		return dateOfBirth;
 	}
 
-	public void setDateOfBirth(Date dateOfBirth) {
+	public void setDateOfBirth(String dateOfBirth) {
 
 		// TODO:: date format validation
 

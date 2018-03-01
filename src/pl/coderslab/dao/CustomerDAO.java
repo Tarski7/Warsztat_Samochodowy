@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import pl.coderslab.entity.Customer;
@@ -43,7 +44,7 @@ public class CustomerDAO {
 			ResultSet rs = query.executeQuery();
 
 			while (rs.next()) {
-				Customer customer = new Customer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDate(4));
+				Customer customer = new Customer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4));
 				customers.add(customer);
 			}
 
@@ -52,5 +53,48 @@ public class CustomerDAO {
 		}
 
 		return customers;
+	}
+
+	public static boolean updateCustomer(Customer customer) {
+
+		List<String> updateQueries = new ArrayList<>();
+
+		try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+
+			customer.toString();
+
+			int id = customer.getId();
+			String name = customer.getName();
+			String lastName = customer.getLastName();
+			String dateOfBirth = customer.getDateOfBirth();
+
+			if (!name.isEmpty()) {
+				String query1 = "UPDATE CUSTOMER SET name='" + name + "' WHERE id=" + id + ";";
+				System.out.println(query1);
+				updateQueries.add(query1);
+			}
+			if (!lastName.isEmpty()) {
+				String query2 = "UPDATE CUSTOMER SET surname='" + lastName + "' WHERE id=" + id + ";";
+				updateQueries.add(query2);
+				System.out.println(query2);
+			}
+			if (dateOfBirth != null) {
+				String query3 = "UPDATE CUSTOMER SET date_of_birth='" + dateOfBirth + "' WHERE id=" + id + ";";
+				System.out.println(query3);
+				updateQueries.add(query3);
+			}
+
+			for (int i = 0; i < updateQueries.size(); i++) {
+				System.out.println(updateQueries.get(i));
+				PreparedStatement st = conn.prepareStatement(updateQueries.get(i));
+				st.executeUpdate();
+			}
+
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+
 	}
 }

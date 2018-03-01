@@ -30,9 +30,7 @@ public class DeleteCustomer extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		getServletContext()
-		.getRequestDispatcher("/WEB-INF/views/deleteCustomerForm.jsp")
-		.forward(request, response);
+		response.sendRedirect("/Warsztat_samochodowy/LoadAllCustomers");
 		
 	}
 
@@ -41,7 +39,7 @@ public class DeleteCustomer extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String idStr = request.getParameter("customerId");
+		String idStr = request.getParameter("idToDelete");
 		int id = Integer.parseInt(idStr);
 		
 		String query = CustomerDAO.deleteCustomerQuery();
