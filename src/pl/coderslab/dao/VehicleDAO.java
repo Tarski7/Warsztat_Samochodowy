@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import pl.coderslab.entity.Employee;
 import pl.coderslab.entity.Vehicle;
 import pl.coderslab.service.DatabaseClient;
 
@@ -50,37 +51,7 @@ public class VehicleDAO {
 		return vehicles;
 	}
 
-
-	
-	/*static public Vehicle save(Vehicle vehicle) {
-		
-		try(Connection conn = DriverManager.getConnection("jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11223305?useSSL=false", "sql11223305", "Tt1GjmaCpL")) {
-			
-			final String sql = "INSERT INTO VEHICLE(id, model, brand, year_of_production, registration_number, "
-					+ "date_of_next_technical_inspection, customer_id) VALUES(default, ?, ?, ?, ?, ?, ?);";
-			PreparedStatement query = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-			query.setString(1, vehicle.getModel());
-			query.setString(2, vehicle.getBrand());
-			query.setDate(3, new java.sql.Date(vehicle.getYearOfProduction().getTime()));
-			query.setString(4, vehicle.getRegistrationNumber());
-			query.setDate(5, new java.sql.Date(vehicle.getDateOfNextTechnicalInspection().getTime()));
-			query.setInt(6, vehicle.getCustomerId());
-			
-			query.executeUpdate();
-			
-			ResultSet rs = query.getGeneratedKeys();
-			if (rs.next()) {
-				vehicle.setId(rs.getInt(1));
-			}
-			
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-		System.out.println("Vehicle has been saved!");
-		return vehicle;
-	}*/
-	
-	/*static public Vehicle load(int id) {
+	static public Vehicle load(int id) {
 		
 		Vehicle vehicle = null;
 		
@@ -100,23 +71,32 @@ public class VehicleDAO {
 		}
 		
 		return vehicle;
-	}*/
+	}
 	
-	
-	/*static public boolean delete(int id) throws Exception {
-		
-		try(Connection conn = DriverManager.getConnection("jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11223305?useSSL=false", "sql11223305", "Tt1GjmaCpL")) {
-			
-			PreparedStatement query = conn.prepareStatement("DELETE FROM VEHICLE WHERE id=?");
-			query.setInt(1, id);
-			
-			query.executeUpdate();
-			
-			System.out.println("Vehicle has been deleted!");
-			return true;
-			
+	public static void updateVehicle(String query, List<String> params) {
+
+		try (Connection conn = DriverManager.getConnection("jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11223305?useSSL=false", "sql11223305", "Tt1GjmaCpL")) {
+
+			String model = params.get(0);
+			String brand = params.get(1);
+			String yearOfProduction = params.get(2);
+			String registrationNumber = params.get(3);
+			String dateOfNextTechnicalInspection = params.get(4);
+			String customerId = params.get(5);
+
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setString(1, model);
+			ps.setString(2, brand);
+			ps.setString(3, yearOfProduction);
+			ps.setString(4, registrationNumber);
+			ps.setString(5, dateOfNextTechnicalInspection);
+			ps.setString(6, customerId);
+			ps.executeUpdate();
+
 		} catch (Exception e) {
-			throw new Exception(e.getMessage()); 
+			e.printStackTrace();
 		}
-	}*/
+		
+	}
+	
 }

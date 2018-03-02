@@ -14,20 +14,20 @@
 	<table class="table table-inverse table-border">
 	  	<thead>
 	    	<tr>
-		      <th>#</th>
 		      <th>id</th>
 		      <th>Model</th>
 		      <th>Brand</th>
 		      <th>Year of production</th>
 		      <th>Registration number</th>
 		      <th>Date of next technical inspection</th>
-		      <th>Customer id</th>     
+		      <th>Customer id</th>
+		      <th>Delete</th>
+		      <th>Edit</th>  
 	    	</tr>
 	  	</thead>
 	  	<tbody>
 	  		<c:forEach items="${ vehicles }" begin="0" step="1" varStatus="theCount" var="vehicle">
 	    		<tr>
-				   <th scope="row">${theCount.count}</th>
 				   <td>${vehicle.id}</td>
 				   <td>${vehicle.model}</td>
 				   <td>${vehicle.brand}</td>
@@ -35,10 +35,16 @@
 				   <td>${vehicle.registrationNumber}</td>
 				   <td>${vehicle.dateOfNextTechnicalInspection}</td>
 				   <td>${vehicle.customerId}</td>
+				   <td><form action="http://localhost:8080/Warsztat_Samochodowy/DeleteVehicle" method="post">
+				   <button type="submit" class="btn btn-primary" name="vehicleId" value="${vehicle.id}">Delete</button></form></td>
+ 				   <td><form action="http://localhost:8080/Warsztat_Samochodowy/UpdateVehicle" method="get">
+ 				   <button type="submit" class="btn btn-primary" name="vehicleId" value="${vehicle.id}">Edit</button></form></td>
 	    		</tr>
 	    	</c:forEach>
 	  	</tbody>
 	</table>
+	
+	<a href="http://localhost:8080/Warsztat_Samochodowy/AddVehicle" class="btn btn-primary active" role="button" aria-pressed="true">Add new vehicle</a>
 
 </body>
 </html>

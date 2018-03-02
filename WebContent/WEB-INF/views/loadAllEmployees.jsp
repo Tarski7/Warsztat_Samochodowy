@@ -14,31 +14,35 @@
 	<table class="table table-inverse table-border">
 	  	<thead>
 	    	<tr>
-		      <th>#</th>
 		      <th>id</th>
 		      <th>Name</th>
 		      <th>Surname</th>
-		      <th>Address</th>
-		      <th>Phone number</th>
-		      <th>Note</th>
-		      <th>Cost of operating hour</th>     
+ 		      <th>More information</th>
+ 		      <th>Employee repairs</th>
+ 		      <th>Delete employee</th>
+		      <th>Edit employee</th>
 	    	</tr>
 	  	</thead>
 	  	<tbody>
 	  		<c:forEach items="${ employees }" begin="0" step="1" varStatus="theCount" var="employee">
 	    		<tr>
-				   <th scope="row">${theCount.count}</th>
 				   <td>${employee.id}</td>
 				   <td>${employee.name}</td>
 				   <td>${employee.surname}</td>
-				   <td>${employee.address}</td>
-				   <td>${employee.phoneNumber}</td>
-				   <td>${employee.note}</td>
-				   <td>${employee.costOfOperatingHour}</td>
+				   <td><form action="http://localhost:8080/Warsztat_Samochodowy/LoadEmployeeMoreInformation" method="post">
+				   <button type="submit" class="btn btn-primary" name="employeeId" value="${employee.id}">More</button></form></td>
+				   <td><form action="http://localhost:8080/Warsztat_Samochodowy/ShowEmployeeRepairs" method="post">
+				   <button type="submit" class="btn btn-primary" name="employeeId" value="${employee.id}">Repairs</button></form></td>
+				   <td><form action="http://localhost:8080/Warsztat_Samochodowy/DeleteEmployee" method="post">
+				   <button type="submit" class="btn btn-primary" name="employeeId" value="${employee.id}">Delete</button></form></td>
+ 				   <td><form action="http://localhost:8080/Warsztat_Samochodowy/UpdateEmployee" method="get">
+ 				   <button type="submit" class="btn btn-primary" name="employeeId" value="${employee.id}">Edit</button></form></td>
 	    		</tr>
 	    	</c:forEach>
 	  	</tbody>
 	</table>
-
+	
+	<a href="http://localhost:8080/Warsztat_Samochodowy/AddEmployee" class="btn btn-primary active" role="button" aria-pressed="true">Add new employee</a>
+	
 </body>
 </html>

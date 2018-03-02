@@ -48,38 +48,6 @@ public class EmployeeDAO {
 		return employees;
 	}
 		
-		
-		
-		
-	
-	/*static public Employee save(Employee employee) {
-		
-		try(Connection conn = DriverManager.getConnection("jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11223305?useSSL=false", "sql11223305", "Tt1GjmaCpL")) {
-			
-			final String sql = "INSERT INTO EMPLOYEE(id, name, surname, address, phone_number, note, "
-					+ "cost_of_operating_hour) VALUES(default, ?, ?, ?, ?, ?, ?);";
-			PreparedStatement query = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-			query.setString(1, employee.getName());
-			query.setString(2, employee.getSurname());
-			query.setString(3, employee.getAddress());
-			query.setInt(4, employee.getPhoneNumber());
-			query.setString(5, employee.getNote());
-			query.setDouble(6, employee.getCostOfOperatingHour());
-			
-			query.executeUpdate();
-			
-			ResultSet rs = query.getGeneratedKeys();
-			if (rs.next()) {
-				employee.setId(rs.getInt(1));
-			}
-			
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-		System.out.println("Employee has been saved!");
-		return employee;
-	}
-	
 	static public Employee load(int id) {
 		
 		Employee employee = null;
@@ -102,22 +70,30 @@ public class EmployeeDAO {
 		return employee;
 	}
 	
-	
-	static public boolean delete(int id) throws Exception {
-		
-		try(Connection conn = DriverManager.getConnection("jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11223305?useSSL=false", "sql11223305", "Tt1GjmaCpL")) {
-			
-			PreparedStatement query = conn.prepareStatement("DELETE FROM EMPLOYEE WHERE id=?;");
-			query.setInt(1, id);
-			
-			query.executeUpdate();
-			
-			System.out.println("Employee has been deleted!");
-			return true;
-			
+	public static void updateEmployee(String query, List<String> params) {
+
+		try (Connection conn = DriverManager.getConnection("jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11223305?useSSL=false", "sql11223305", "Tt1GjmaCpL")) {
+
+			String name = params.get(0);
+			String surname = params.get(1);
+			String address = params.get(2);
+			String phoneNumber = params.get(3);
+			String note = params.get(4);
+			String costOfOperatingHour = params.get(5);
+
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setString(1, name);
+			ps.setString(2, surname);
+			ps.setString(3, address);
+			ps.setString(4, phoneNumber);
+			ps.setString(5, note);
+			ps.setString(6, costOfOperatingHour);
+			ps.executeUpdate();
+
 		} catch (Exception e) {
-			throw new Exception(e.getMessage()); 
+			e.printStackTrace();
 		}
-	}*/
+		
+	}
 	
 }

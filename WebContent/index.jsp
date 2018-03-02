@@ -9,6 +9,7 @@
 <a href="http://localhost:8080/Warsztat_Samochodowy/LoadAllVehicles">List of vehicles</a><br>
 <a href="http://localhost:8080/Warsztat_Samochodowy/AddVehicle">Add vehicle</a><br>
 <a href="http://localhost:8080/Warsztat_Samochodowy/DeleteVehicle">Delete vehicle</a><br>
+<a href="http://localhost:8080/Warsztat_Samochodowy/LoadAllCustomers">List of customers</a><br>
 <a href="http://localhost:8080/Warsztat_Samochodowy/AddCustomer">Add customer</a><br>
 
 <%@ include file="WEB-INF/views/footer.jspf" %>
