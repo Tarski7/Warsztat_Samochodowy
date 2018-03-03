@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>List of employees</title>
+<title>List of orders</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha/js/bootstrap.min.js"></script>
 </head>
@@ -46,7 +46,7 @@
 				   <td>${order.numberOfOperatingHours}</td>
 				   <td>${order.employeeId}</td>
 				   <td>${order.vehicleId}</td>
-				   <td><form action="/Warsztat_samochodowy/UpdateOrderForm" method="POST">
+				   <td><form action="/Warsztat_samochodowy/UpdateOrder" method="GET">
   						<button type="submit" name="idToEdit" value="${order.id}" class="btn-link">Edit</button>
 						</form>
 						<form action="/Warsztat_samochodowy/DeleteOrder" method="POST">

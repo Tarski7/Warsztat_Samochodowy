@@ -35,9 +35,9 @@
 				   <td>${vehicle.registrationNumber}</td>
 				   <td>${vehicle.dateOfNextTechnicalInspection}</td>
 				   <td>${vehicle.customerId}</td>
-				   <td><form action="http://localhost:8080/Warsztat_Samochodowy/DeleteVehicle" method="post">
+				   <td><form action="http://localhost:8080/Warsztat_samochodowy/DeleteVehicle" method="post">
 				   <button type="submit" class="btn btn-primary" name="vehicleId" value="${vehicle.id}">Delete</button></form></td>
- 				   <td><form action="http://localhost:8080/Warsztat_Samochodowy/UpdateVehicle" method="get">
+ 				   <td><form action="http://localhost:8080/Warsztat_samochodowy/UpdateVehicle" method="get">
  				   <button type="submit" class="btn btn-primary" name="vehicleId" value="${vehicle.id}">Edit</button></form></td>
 	    		</tr>
 	    	</c:forEach>
