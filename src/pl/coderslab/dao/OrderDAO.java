@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import pl.coderslab.entity.Customer;
 import pl.coderslab.entity.Order;
 
 public class OrderDAO {
@@ -15,22 +16,14 @@ public class OrderDAO {
 	static private final String URL = "jdbc:mysql://sql11.freemysqlhosting.net/sql11223305?useSSL=false";
 	static private final String USERNAME = "sql11223305";
 	static private final String PASSWORD = "Tt1GjmaCpL";
-	
-	
+
 	public static int addOrder(Order order) throws Exception {
 		try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
-			
-//			String query = "INSERT INTO ORDERS VALUES(default, '"+order.getDateOfAcceptanceForRepair()+"', '"
-//							+order.getPlannedDateOfStartRepair()+"', '"+order.getDateOfStartRepair()+"', '"
-//							+order.getDescriptionOfTheProblem()+"', "+order.getStatus()+", "
-//							+order.getCostOfRepair()+", "+order.getCostOfUsedParts()+", "
-//							+order.getCostOfOperatingHourOfEmployee()+", "+order.getNumberOfOperatingHours()+", "
-//							+order.getEmployeeId()+", "+order.getVehicleId()+");";
-			
+
 			String query = "INSERT INTO ORDERS VALUES(default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
-			
+
 			PreparedStatement st = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-			
+
 			st.setString(1, order.getDateOfAcceptanceForRepair());
 			st.setString(2, order.getPlannedDateOfStartRepair());
 			st.setString(3, order.getDateOfStartRepair());
@@ -43,15 +36,56 @@ public class OrderDAO {
 			st.setDouble(10, order.getNumberOfOperatingHours());
 			st.setDouble(11, order.getEmployeeId());
 			st.setInt(12, order.getVehicleId());
-		
+
 			st.executeUpdate();
-			
+
 			ResultSet rs = st.getGeneratedKeys();
 			rs.next();
 			return rs.getInt(1);
-			
+
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());
 		}
+	}
+
+	public static boolean deleteOrder(int id) throws Exception {
+
+		try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+
+			String query = "DELETE FROM ORDERS WHERE id=?";
+
+			PreparedStatement st = conn.prepareStatement(query);
+			st.setInt(1, id);
+			st.executeUpdate();
+			
+			return true;
+
+		} catch (Exception e) {
+			throw new Exception(e.getMessage());
+		}
+	}
+	
+	public static List<Order> loadAll() {
+
+		List<Order> orders = new ArrayList<>();
+
+		try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+
+			PreparedStatement query = conn.prepareStatement("SELECT * FROM ORDERS;");
+			ResultSet rs = query.executeQuery();
+
+			while (rs.next()) {
+				Order order = new Order(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
+										rs.getString(5), rs.getString(6), rs.getString(7), rs.getDouble(8),
+										rs.getDouble(9), rs.getDouble(10), rs.getInt(11), rs.getInt(12), 
+										rs.getInt(13));
+				orders.add(order);
+			}
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+
+		return orders;
 	}
 }
