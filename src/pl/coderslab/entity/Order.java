@@ -1,6 +1,6 @@
 package pl.coderslab.entity;
 
-public class Orders {
+public class Order {
 
 	private int id;
 	private String dateOfAcceptanceForRepair;
@@ -8,22 +8,22 @@ public class Orders {
 	private String dateOfStartRepair;
 	private String descriptionOfTheProblem;
 	private String descriptionOfTheRepair;
-	private int status = 0;
+	private String status = "";
 	private double costOfRepair;
 	private double costOfUsedParts;
 	private double costOfOperatingHourOfEmployee;
 	private int numberOfOperatingHours;
-	private int employee_id;
-	private int vehicle_id;
+	private int employeeId;
+	private int vehicleId;
 	
 	
 	
 	
 	
-	public Orders(int id, String dateOfAcceptanceForRepair, String plannedDateOfStartRepair, String dateOfStartRepair,
-			String descriptionOfTheProblem, String descriptionOfTheRepair, int status, double costOfRepair,
-			double costOfUsedParts, double costOfOperatingHourOfEmployee, int numberOfOperatingHours, int employee_id,
-			int vehicle_id) {
+	public Order(int id, String dateOfAcceptanceForRepair, String plannedDateOfStartRepair, String dateOfStartRepair,
+			String descriptionOfTheProblem, String descriptionOfTheRepair, String status, double costOfRepair,
+			double costOfUsedParts, double costOfOperatingHourOfEmployee, int numberOfOperatingHours, int employeeId,
+			int vehicleId) {
 		super();
 		this.id = id;
 		this.dateOfAcceptanceForRepair = dateOfAcceptanceForRepair;
@@ -36,12 +36,12 @@ public class Orders {
 		this.costOfUsedParts = costOfUsedParts;
 		this.costOfOperatingHourOfEmployee = costOfOperatingHourOfEmployee;
 		this.numberOfOperatingHours = numberOfOperatingHours;
-		this.employee_id = employee_id;
-		this.vehicle_id = vehicle_id;
+		this.employeeId = employeeId;
+		this.vehicleId = vehicleId;
 	}
 
 
-	public Orders() {
+	public Order() {
 		
 	}
 
@@ -101,14 +101,13 @@ public class Orders {
 	}
 
 
-	public int getStatus() {
+	public String getStatus() {
 		return status;
 	}
 
 
 	//Status setter with validation
-	public void setStatus(int status) {
-		if (status > 0 && status < 6)
+	public void setStatus(String status) {
 		this.status = status;
 	}
 
@@ -153,23 +152,23 @@ public class Orders {
 	}
 
 
-	public int getEmployee_id() {
-		return employee_id;
+	public int getEmployeeId() {
+		return employeeId;
 	}
 
 
-	public void setEmployee_id(int employee_id) {
-		this.employee_id = employee_id;
+	public void setEmployeeId(int employeeId) {
+		this.employeeId = employeeId;
 	}
 
 
-	public int getVehicle_id() {
-		return vehicle_id;
+	public int getVehicleId() {
+		return vehicleId;
 	}
 
 
-	public void setVehicle_id(int vehicle_id) {
-		this.vehicle_id = vehicle_id;
+	public void setVehicleId(int vehicleId) {
+		this.vehicleId = vehicleId;
 	}
 	
 }

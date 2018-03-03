@@ -88,7 +88,7 @@
   	<div class="row">
   	<div class="form-group col-lg-3">
 	    <label for="inputNumberOfOperatingHours">Number of operating hours</label>
-	    <input type="number" min="0" step="1" class="form-control" id="inputNumberOfOperatingHours" name="NumberOfOperatingHours" placeholder="0">
+	    <input type="number" min="0" step="1" class="form-control" id="inputNumberOfOperatingHours" name="numberOfOperatingHours" placeholder="0">
 	    <small id="numberOfOperatingHoursHelp" class="form-text text-muted">We'll never share your personal data with anyone else.</small>
   	</div>
   	</div>
