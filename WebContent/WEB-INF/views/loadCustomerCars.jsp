@@ -20,6 +20,7 @@
 		      <th>Year of production</th>
 		      <th>Registration number</th>
 		      <th>Date of next technical inspection</th>
+		      <th>Show repair history</th>
 		      <th>Delete</th>
 		      <th>Edit</th>  
 	    	</tr>
@@ -33,6 +34,8 @@
 				   <td>${customerCars.yearOfProduction}</td>
 				   <td>${customerCars.registrationNumber}</td>
 				   <td>${customerCars.dateOfNextTechnicalInspection}</td>
+				   <td><form action="http://localhost:8080/Warsztat_samochodowy/LoadShortRepairHistory" method="get">
+				   <button type="submit" class="btn btn-primary" name="vehicleId" value="${customerCars.id}">Repair history</button></form></td>
 				   <td><form action="http://localhost:8080/Warsztat_samochodowy/DeleteVehicle" method="post">
 				   <button type="submit" class="btn btn-primary" name="vehicleId" value="${customerCars.id}">Delete</button></form></td>
  				   <td><form action="http://localhost:8080/Warsztat_samochodowy/UpdateVehicle" method="get">
