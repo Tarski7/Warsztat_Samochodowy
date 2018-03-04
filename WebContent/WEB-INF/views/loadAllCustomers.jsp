@@ -42,6 +42,9 @@
 						</form>
 						<form action="/Warsztat_samochodowy/DeleteCustomer" method="POST">
   						<button type="submit" name="idToDelete" value="${customer.id}" class="btn-link">Delete</button>
+						</form>
+						<form action="/Warsztat_samochodowy/LoadCustomerCars" method="GET">
+  						<button type="submit" name="id" value="${customer.id}" class="btn-link">Show Cars</button>
 						</form></td>
 	    		</tr>
 	    	</c:forEach>
