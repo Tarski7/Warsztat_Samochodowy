@@ -36,8 +36,8 @@
 	  	</tbody>
 	</table>
 	
-	<a href="http://localhost:8080/Warsztat_Samochodowy/LoadAllEmployees" class="btn btn-primary active" role="button" aria-pressed="true">Go back to employees</a>
-	<a href="http://localhost:8080/Warsztat_Samochodowy/index.jsp" class="btn btn-primary active" role="button" aria-pressed="true">Go back to main menu</a>
+	<a href="http://localhost:8080/Warsztat_samochodowy/LoadAllEmployees" class="btn btn-primary active" role="button" aria-pressed="true">Go back to employees</a>
+	<a href="http://localhost:8080/Warsztat_samochodowy/index.jsp" class="btn btn-primary active" role="button" aria-pressed="true">Go back to main menu</a>
 	
 </body>
 </html>

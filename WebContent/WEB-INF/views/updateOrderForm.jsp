@@ -106,6 +106,7 @@
 	    <small id="vehicleIdHelp" class="form-text text-muted">We'll never share your personal data with anyone else.</small>
   	</div>
   	</div>
+  	<input type="hidden" name="id" value="${order.id}">
   	<button type="submit" class="btn btn-primary">Submit</button>
 </form>
 
