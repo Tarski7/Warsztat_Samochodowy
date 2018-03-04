@@ -29,10 +29,10 @@
 				   <td>${customer.name}</td>
 				   <td>${customer.lastName}</td>
 				   <td>${customer.dateOfBirth}</td>
-				   <td><form action="/Warsztat_samochodowy/UpdateCustomerFormLauncher" method="POST">
+				   <td><form action="/Warsztat_Samochodowy/UpdateCustomerFormLauncher" method="POST">
   						<button type="submit" name="idToEdit" value="${customer.id}" class="btn-link">Edit</button>
 						</form>
-						<form action="/Warsztat_samochodowy/DeleteCustomer" method="POST">
+ 						<form action="/Warsztat_Samochodowy/DeleteCustomer" method="POST">
   						<button type="submit" name="idToDelete" value="${customer.id}" class="btn-link">Delete</button>
 						</form></td>
 	    		</tr>
