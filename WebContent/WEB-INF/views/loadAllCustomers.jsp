@@ -26,7 +26,9 @@
 		      <th>Name</th>
 		      <th>Last Name</th>
 		      <th>Date of birth</th> 
-		      <th>Action</th>
+		      <th>Show customer's cars</th>
+		      <th>Edit</th>
+		      <th>Delete</th>
 	    	</tr>
 	  	</thead>
 	  	<tbody>
@@ -37,15 +39,18 @@
 				   <td>${customer.name}</td>
 				   <td>${customer.lastName}</td>
 				   <td>${customer.dateOfBirth}</td>
-				   <td><form action="/Warsztat_samochodowy/UpdateCustomerFormLauncher" method="POST">
-  						<button type="submit" name="idToEdit" value="${customer.id}" class="btn-link">Edit</button>
-						</form>
-						<form action="/Warsztat_samochodowy/DeleteCustomer" method="POST">
-  						<button type="submit" name="idToDelete" value="${customer.id}" class="btn-link">Delete</button>
-						</form>
-						<form action="/Warsztat_samochodowy/LoadCustomerCars" method="GET">
-  						<button type="submit" name="id" value="${customer.id}" class="btn-link">Show Cars</button>
-						</form></td>
+				   <td>
+					<form action="http://localhost:8080/Warsztat_samochodowy/LoadCustomerCars" method="GET">
+				   <button type="submit" class="btn btn-primary" name="id" value="${customer.id}">Show cars</button></form>
+					</td>
+				   <td>
+				   <form action="http://localhost:8080/Warsztat_samochodowy/UpdateCustomerFormLauncher" method="POST">
+				   <button type="submit" class="btn btn-primary" name="idToEdit" value="${customer.id}">Edit</button></form>
+				   </td>
+				   <td>
+				   <form action="http://localhost:8080/Warsztat_samochodowy/DeleteCustomer" method="POST">
+				   <button type="submit" class="btn btn-primary" name="idToDelete" value="${customer.id}">Delete</button></form>
+				   </td>
 	    		</tr>
 	    	</c:forEach>
 	  	</tbody>
