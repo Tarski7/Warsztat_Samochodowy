@@ -10,20 +10,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import pl.coderslab.dao.CustomerDAO;
-import pl.coderslab.entity.Customer;
+import pl.coderslab.dao.OrderDAO;
+import pl.coderslab.entity.Order;
 
 /**
- * Servlet implementation class LoadAllCustomers
+ * Servlet implementation class LoadAllOrders
  */
-@WebServlet("/LoadAllCustomers")
-public class LoadAllCustomers extends HttpServlet {
+@WebServlet("/LoadAllOrders")
+public class LoadAllOrders extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoadAllCustomers() {
+    public LoadAllOrders() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,15 +33,14 @@ public class LoadAllCustomers extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		List<Customer> customers = new ArrayList<>();
-		customers = CustomerDAO.loadAll();
+		List<Order> orders = new ArrayList<>();
+		orders = OrderDAO.loadAll();
 		
-		request.setAttribute("customers", customers);
+		request.setAttribute("orders", orders);
 		
 		getServletContext().
-		getRequestDispatcher("/WEB-INF/views/loadAllCustomers.jsp").
+		getRequestDispatcher("/WEB-INF/views/loadAllOrders.jsp").
 		forward(request, response);
-		
 	}
 
 	/**

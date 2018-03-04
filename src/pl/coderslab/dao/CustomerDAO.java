@@ -5,10 +5,11 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.Date;
+//import java.util.Date;
 import java.util.List;
 
 import pl.coderslab.entity.Customer;
+import pl.coderslab.entity.Vehicle;
 
 public class CustomerDAO {
 
@@ -96,5 +97,53 @@ public class CustomerDAO {
 			return false;
 		}
 
+	}
+
+	static public List<Customer> searchCustomerByLastName(String lastName) throws Exception {
+
+		List<Customer> customers = new ArrayList<>();
+
+		try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+
+			String query = "SELECT * FROM CUSTOMER WHERE surname LIKE '%" + lastName + "%';";
+			PreparedStatement st = conn.prepareStatement(query);
+			ResultSet rs = st.executeQuery();
+
+			while (rs.next()) {
+				Customer customer = new Customer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4));
+				customers.add(customer);
+			}
+
+			return customers;
+		} catch (Exception e) {
+			throw new Exception(e.getMessage());
+		}
+	}
+
+	static public List<Vehicle> showCustomerCars(int id) throws Exception {
+
+		List<Vehicle> customerCars = new ArrayList<>();
+
+		try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+
+			String query = "SELECT VEHICLE.id, VEHICLE.model, VEHICLE.brand, VEHICLE.year_of_production, "
+					+ "VEHICLE.registration_number, VEHICLE.date_of_next_technical_inspection "
+					+ "FROM CUSTOMER JOIN VEHICLE ON CUSTOMER.id = VEHICLE.customer_id WHERE CUSTOMER.id=?;";
+			
+			PreparedStatement st = conn.prepareStatement(query);
+			st.setInt(1, id);
+			
+			ResultSet rs = st.executeQuery();
+
+			while (rs.next()) {
+				Vehicle vehicle = new Vehicle(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDate(4), rs.getString(5), rs.getDate(6));
+				customerCars.add(vehicle);
+			}
+
+			return customerCars;
+			
+		} catch (Exception e) {
+			throw new Exception(e.getMessage());
+		}
 	}
 }

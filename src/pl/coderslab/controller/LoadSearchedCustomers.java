@@ -14,16 +14,16 @@ import pl.coderslab.dao.CustomerDAO;
 import pl.coderslab.entity.Customer;
 
 /**
- * Servlet implementation class LoadAllCustomers
+ * Servlet implementation class LoadSearchedCustomers
  */
-@WebServlet("/LoadAllCustomers")
-public class LoadAllCustomers extends HttpServlet {
+@WebServlet("/LoadSearchedCustomers")
+public class LoadSearchedCustomers extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoadAllCustomers() {
+    public LoadSearchedCustomers() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,14 +34,19 @@ public class LoadAllCustomers extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		List<Customer> customers = new ArrayList<>();
-		customers = CustomerDAO.loadAll();
 		
+		String searchedLastName = request.getParameter("lastName");
+		
+		try {
+		customers = CustomerDAO.searchCustomerByLastName(searchedLastName);
 		request.setAttribute("customers", customers);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		getServletContext().
 		getRequestDispatcher("/WEB-INF/views/loadAllCustomers.jsp").
 		forward(request, response);
-		
 	}
 
 	/**
