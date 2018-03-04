@@ -35,17 +35,17 @@
 				   <td>${vehicle.registrationNumber}</td>
 				   <td>${vehicle.dateOfNextTechnicalInspection}</td>
 				   <td>${vehicle.customerId}</td>
-				   <td><form action="http://localhost:8080/Warsztat_samochodowy/DeleteVehicle" method="post">
+				   <td><form action="http://localhost:8080/Warsztat_Samochodowy/DeleteVehicle" method="post">
 				   <button type="submit" class="btn btn-primary" name="vehicleId" value="${vehicle.id}">Delete</button></form></td>
- 				   <td><form action="http://localhost:8080/Warsztat_samochodowy/UpdateVehicle" method="get">
+ 				   <td><form action="http://localhost:8080/Warsztat_Samochodowy/UpdateVehicle" method="get">
  				   <button type="submit" class="btn btn-primary" name="vehicleId" value="${vehicle.id}">Edit</button></form></td>
 	    		</tr>
 	    	</c:forEach>
 	  	</tbody>
 	</table>
 	
-	<a href="http://localhost:8080/Warsztat_samochodowy/AddVehicle" class="btn btn-primary active" role="button" aria-pressed="true">Add new vehicle</a>
-	<a href="http://localhost:8080/Warsztat_samochodowy/index.jsp" class="btn btn-primary active" role="button" aria-pressed="true">Go back to main menu</a>
+	<a href="http://localhost:8080/Warsztat_Samochodowy/AddVehicle" class="btn btn-primary active" role="button" aria-pressed="true">Add new vehicle</a>
+	<a href="http://localhost:8080/Warsztat_Samochodowy/index.jsp" class="btn btn-primary active" role="button" aria-pressed="true">Go back to main menu</a>
 
 </body>
 </html>

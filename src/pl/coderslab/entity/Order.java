@@ -40,6 +40,24 @@ public class Order {
 		this.vehicleId = vehicleId;
 	}
 
+	public Order(int id, String dateOfAcceptanceForRepair, String plannedDateOfStartRepair, String dateOfStartRepair,
+			String descriptionOfTheProblem, String descriptionOfTheRepair, String status, double costOfRepair,
+			double costOfUsedParts, double costOfOperatingHourOfEmployee, int numberOfOperatingHours,
+			int vehicleId) {
+		super();
+		this.id = id;
+		this.dateOfAcceptanceForRepair = dateOfAcceptanceForRepair;
+		this.plannedDateOfStartRepair = plannedDateOfStartRepair;
+		this.dateOfStartRepair = dateOfStartRepair;
+		this.descriptionOfTheProblem = descriptionOfTheProblem;
+		this.descriptionOfTheRepair = descriptionOfTheRepair;
+		setStatus(status);
+		this.costOfRepair = costOfRepair;
+		this.costOfUsedParts = costOfUsedParts;
+		this.costOfOperatingHourOfEmployee = costOfOperatingHourOfEmployee;
+		this.numberOfOperatingHours = numberOfOperatingHours;
+		this.vehicleId = vehicleId;
+	}
 
 	public Order() {
 		

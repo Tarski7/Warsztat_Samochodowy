@@ -13,7 +13,6 @@
 <table class="table table-inverse table-border">
 	  	<thead>
 	    	<tr>
-		      <th>#</th>
 		      <th>id</th>
 		      <th>Date of acceptance for repair</th>
 		      <th>Planned date of repair start</th>
@@ -25,32 +24,29 @@
 		      <th>Cost of used parts</th>
 		      <th>Cost of man-hour of an employee</th>
 		      <th>Number of man-hours that the repair took</th>
-		      <th>Employee id</th>
 		      <th>Vehicle id</th>
 	    	</tr>
 	  	</thead>
 	  	<tbody>
-	  		<c:forEach items="${ orders }" begin="0" step="1" varStatus="theCount" var="order">
+	  		<c:forEach items="${ employeeRepairs }" begin="0" step="1" varStatus="theCount" var="repair">
 	    		<tr>
-				   <th scope="row">${theCount.count}</th>
-				   <td>${order.id}</td>
-				   <td>${order.dateOfAcceptanceForRepair}</td>
-				   <td>${order.plannedDateOfStartRepair}</td>
-				   <td>${order.dateOfStartRepair}</td>
-				   <td>${order.descriptionOfTheProblem}</td>
-				   <td>${order.descriptionOfTheRepair}</td>
-				   <td>${order.status}</td>
-				   <td>${order.costOfRepair}</td>
-				   <td>${order.costOfUsedParts}</td>
-				   <td>${order.costOfOperatingHourOfEmployee}</td>
-				   <td>${order.numberOfOperatingHours}</td>
-				   <td>${order.employeeId}</td>
-				   <td>${order.vehicleId}</td>
+				   <td>${repair.id}</td>
+				   <td>${repair.dateOfAcceptanceForRepair}</td>
+				   <td>${repair.plannedDateOfStartRepair}</td>
+				   <td>${repair.dateOfStartRepair}</td>
+				   <td>${repair.descriptionOfTheProblem}</td>
+				   <td>${repair.descriptionOfTheRepair}</td>
+				   <td>${repair.status}</td>
+				   <td>${repair.costOfRepair}</td>
+				   <td>${repair.costOfUsedParts}</td>
+				   <td>${repair.costOfOperatingHourOfEmployee}</td>
+				   <td>${repair.numberOfOperatingHours}</td>
+				   <td>${repair.vehicleId}</td>
 				   <td><form action="/Warsztat_Samochodowy/UpdateOrder" method="GET">
-  						<button type="submit" name="idToEdit" value="${order.id}" class="btn-link">Edit</button>
+  						<button type="submit" name="idToEdit" value="${repair.id}" class="btn-link">Edit</button>
 						</form>
 						<form action="/Warsztat_Samochodowy/DeleteOrder" method="POST">
-  						<button type="submit" name="idToDelete" value="${order.id}" class="btn-link">Delete</button>
+  						<button type="submit" name="idToDelete" value="${repair.id}" class="btn-link">Delete</button>
 						</form></td>
 	    		</tr>
 	    	</c:forEach>

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pl.coderslab.entity.Employee;
+import pl.coderslab.entity.Order;
 
 public class EmployeeDAO {
 	
@@ -94,6 +95,37 @@ public class EmployeeDAO {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	static public List<Order> showEmployeeRepairs(int id) throws Exception {
+
+		List<Order> employeeRepairs = new ArrayList<>();
+
+		try (Connection conn = DriverManager.getConnection("jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11223305?useSSL=false", "sql11223305", "Tt1GjmaCpL")) {
+
+			String query = "SELECT ORDERS.id, ORDERS.date_of_acceptance_for_repair, "
+					+ "ORDERS.planned_date_of_start_repair, ORDERS.date_of_start_repair, "
+					+ "ORDERS.description_of_the_problem, ORDERS.description_of_the_repair, "
+					+ "ORDERS.status, ORDERS.cost_of_repair, ORDERS.cost_of_used_parts, "
+					+ "ORDERS.cost_of_operating_hour_of_employee, ORDERS.number_of_operating_hours, "
+					+ "ORDERS.vehicle_id FROM EMPLOYEE JOIN ORDERS ON EMPLOYEE.id = ORDERS.employee_id "
+					+ "WHERE EMPLOYEE.id=? AND status='in repair';";
+			
+			PreparedStatement st = conn.prepareStatement(query);
+			st.setInt(1, id);
+			
+			ResultSet rs = st.executeQuery();
+
+			while (rs.next()) {
+				Order order = new Order(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getDouble(8), rs.getDouble(9), rs.getDouble(10), rs.getInt(11), rs.getInt(12));
+				employeeRepairs.add(order);
+			}
+
+			return employeeRepairs;
+			
+		} catch (Exception e) {
+			throw new Exception(e.getMessage());
+		}
 	}
 	
 }

@@ -155,4 +155,27 @@ public class OrderDAO {
 			throw new Exception(e.getMessage());
 		}
 	}
+	
+	public static List<Order> loadCurrentOrders() {
+
+		List<Order> orders = new ArrayList<>();
+
+		try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+
+			PreparedStatement query = conn.prepareStatement("SELECT * FROM ORDERS WHERE status='in repair';");
+			ResultSet rs = query.executeQuery();
+
+			while (rs.next()) {
+				Order order = new Order(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
+						rs.getString(5), rs.getString(6), rs.getString(7), rs.getDouble(8), rs.getDouble(9),
+						rs.getDouble(10), rs.getInt(11), rs.getInt(12), rs.getInt(13));
+				orders.add(order);
+			}
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+
+		return orders;
+	}
 }

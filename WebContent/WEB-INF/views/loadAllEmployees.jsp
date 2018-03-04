@@ -31,7 +31,7 @@
 				   <td>${employee.surname}</td>
 				   <td><form action="http://localhost:8080/Warsztat_Samochodowy/LoadEmployeeMoreInformation" method="post">
 				   <button type="submit" class="btn btn-primary" name="employeeId" value="${employee.id}">More</button></form></td>
-				   <td><form action="http://localhost:8080/Warsztat_Samochodowy/ShowEmployeeRepairs" method="post">
+				   <td><form action="http://localhost:8080/Warsztat_Samochodowy/LoadEmployeeRepairs" method="post">
 				   <button type="submit" class="btn btn-primary" name="employeeId" value="${employee.id}">Repairs</button></form></td>
 				   <td><form action="http://localhost:8080/Warsztat_Samochodowy/DeleteEmployee" method="post">
 				   <button type="submit" class="btn btn-primary" name="employeeId" value="${employee.id}">Delete</button></form></td>
