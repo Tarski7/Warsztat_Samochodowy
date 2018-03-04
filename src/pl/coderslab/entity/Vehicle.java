@@ -15,6 +15,7 @@ public class Vehicle {
 	public Vehicle() {
 		super();
 	}
+	
 	public Vehicle(String model, String brand, Date yearOfProduction, String registrationNumber,
 			Date dateOfNextTechnicalInspection, int customerId) {
 		super();
@@ -24,6 +25,18 @@ public class Vehicle {
 		this.registrationNumber = registrationNumber;
 		this.dateOfNextTechnicalInspection = dateOfNextTechnicalInspection;
 		this.customerId = customerId;
+	}
+	
+	//Constructor needed to show cars of a chosen customer
+	public Vehicle(int id, String model, String brand, Date yearOfProduction, String registrationNumber,
+			Date dateOfNextTechnicalInspection) {
+		super();
+		setId(id);
+		setModel(model);
+		setBrand(brand);
+		setYearOfProduction(yearOfProduction);
+		setRegistrationNumber(registrationNumber);
+		setDateOfNextTechnicalInspection(dateOfNextTechnicalInspection);
 	}
 	
 	public String getModel() {
