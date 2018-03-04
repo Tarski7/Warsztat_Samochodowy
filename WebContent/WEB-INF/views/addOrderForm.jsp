@@ -80,13 +80,6 @@
   	</div>
   	<div class="row">
   	<div class="form-group col-lg-3">
-	    <label for="inputCostOfOperatingHourOfEmployee">Cost of operating hour of employee</label>
-	    <input type="number" min="0.00" step="0.01" class="form-control" id="inputCostOfOperatingHourOfEmployee" name="costOfOperatingHourOfEmployee" placeholder="0,00">
-	    <small id="costOfOperatingHourOfEmployeeHelp" class="form-text text-muted">We'll never share your personal data with anyone else.</small>
-  	</div>
-  	</div>
-  	<div class="row">
-  	<div class="form-group col-lg-3">
 	    <label for="inputNumberOfOperatingHours">Number of operating hours</label>
 	    <input type="number" min="0" step="1" class="form-control" id="inputNumberOfOperatingHours" name="numberOfOperatingHours" placeholder="0">
 	    <small id="numberOfOperatingHoursHelp" class="form-text text-muted">We'll never share your personal data with anyone else.</small>
