@@ -144,7 +144,21 @@ public class OrderDAO {
 			st.setString(6, order.getStatus());
 			st.setDouble(7, order.getCostOfRepair());
 			st.setDouble(8, order.getCostOfUsedParts());
-			st.setDouble(9, order.getCostOfOperatingHourOfEmployee());
+			
+			String query2 = "SELECT cost_of_operating_hour FROM EMPLOYEE WHERE id=?;";
+			PreparedStatement st2 = conn.prepareStatement(query2);
+			st2.setInt(1, order.getEmployeeId());
+			ResultSet rs2 = st2.executeQuery();
+			
+			System.out.println(st2.toString());
+			
+			double costOfOperatingHourOfEmployee = 0.0;
+			
+			while(rs2.next()) {
+				costOfOperatingHourOfEmployee = rs2.getDouble(1);
+			}
+			
+			st.setDouble(9, costOfOperatingHourOfEmployee);
 			st.setInt(10, order.getNumberOfOperatingHours());
 			st.setInt(11, order.getEmployeeId());
 			st.setInt(12, order.getVehicleId());
