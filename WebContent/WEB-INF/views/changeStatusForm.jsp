@@ -13,7 +13,6 @@
 <table class="table table-inverse table-border">
 	  	<thead>
 	    	<tr>
-		      <th>#</th>
 		      <th>id</th>
 		      <th>Date of acceptance for repair</th>
 		      <th>Planned date of repair start</th>
@@ -30,33 +29,35 @@
 	    	</tr>
 	  	</thead>
 	  	<tbody>
-	  		<c:forEach items="${ orders }" begin="0" step="1" varStatus="theCount" var="order">
 	    		<tr>
-				   <th scope="row">${theCount.count}</th>
 				   <td>${order.id}</td>
 				   <td>${order.dateOfAcceptanceForRepair}</td>
 				   <td>${order.plannedDateOfStartRepair}</td>
 				   <td>${order.dateOfStartRepair}</td>
 				   <td>${order.descriptionOfTheProblem}</td>
 				   <td>${order.descriptionOfTheRepair}</td>
-				   <td>${order.status}
-					   <form action="/Warsztat_samochodowy/ChangeStatusOfOrder" method="GET">
-	  						<button type="submit" name="id" value="${order.id}" class="btn btn-warning btn-sm">Change status</button>
-							</form></td>
+				   <td>
+					   	<form action="/Warsztat_samochodowy/ChangeStatusOfOrder" method="POST">
+					   		<div class="form-group">
+					   			
+					   			<select class="form-control" id="inputStatus" name="status" value="${order.status}">
+						   			<option value="Accepted">Accepted</option>
+				        			<option value="Confirmed repair costs">Confirmed repair costs</option>
+				        			<option value="In repair">In repair</option>
+				       	 			<option value="Ready for pickup">Ready for pickup</option>
+				        			<option value="Resignation">Resignation</option>
+					   		</div>
+					   		<input type="hidden" name="id" value="${order.id}">
+  							<button type="submit" class="btn btn-primary btn-sm">Submit</button>
+					   	</form>
+				   </td>
 				   <td>${order.costOfRepair}</td>
 				   <td>${order.costOfUsedParts}</td>
 				   <td>${order.costOfOperatingHourOfEmployee}</td>
 				   <td>${order.numberOfOperatingHours}</td>
 				   <td>${order.employeeId}</td>
 				   <td>${order.vehicleId}</td>
-				   <td><form action="/Warsztat_Samochodowy/UpdateOrder" method="GET">
-  						<button type="submit" name="idToEdit" value="${order.id}" class="btn-link">Edit</button>
-						</form>
-						<form action="/Warsztat_Samochodowy/DeleteOrder" method="POST">
-  						<button type="submit" name="idToDelete" value="${order.id}" class="btn-link">Delete</button>
-						</form></td>
 	    		</tr>
-	    	</c:forEach>
 	  	</tbody>
 	</table>
 </body>

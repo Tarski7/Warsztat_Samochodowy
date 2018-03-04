@@ -10,7 +10,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<form action="/Warsztat_Samochodowy/LoadSearchedCustomers" method="GET">
+	<form action="/Warsztat_samochodowy/LoadSearchedCustomers" method="GET">
     <div class="row">
 	<div class="form-group col-lg-3">
     	<label for="inputLastName">Search customers by last name:</label>
@@ -26,7 +26,9 @@
 		      <th>Name</th>
 		      <th>Last Name</th>
 		      <th>Date of birth</th> 
-		      <th>Action</th>
+		      <th>Show customer's cars</th>
+		      <th>Edit</th>
+		      <th>Delete</th>
 	    	</tr>
 	  	</thead>
 	  	<tbody>
@@ -37,19 +39,22 @@
 				   <td>${customer.name}</td>
 				   <td>${customer.lastName}</td>
 				   <td>${customer.dateOfBirth}</td>
-				   <td><form action="/Warsztat_Samochodowy/UpdateCustomerFormLauncher" method="POST">
-  						<button type="submit" name="idToEdit" value="${customer.id}" class="btn-link">Edit</button>
-						</form>
- 						<form action="/Warsztat_Samochodowy/DeleteCustomer" method="POST">
-  						<button type="submit" name="idToDelete" value="${customer.id}" class="btn-link">Delete</button>
-						</form>
-						<form action="/Warsztat_Samochodowy/LoadCustomerCars" method="GET">
-  						<button type="submit" name="id" value="${customer.id}" class="btn-link">Show Cars</button>
-						</form></td>
+				   <td>
+					<form action="http://localhost:8080/Warsztat_samochodowy/LoadCustomerCars" method="GET">
+				   <button type="submit" class="btn btn-primary" name="id" value="${customer.id}">Show cars</button></form>
+					</td>
+				   <td>
+				   <form action="http://localhost:8080/Warsztat_samochodowy/UpdateCustomerFormLauncher" method="POST">
+				   <button type="submit" class="btn btn-primary" name="idToEdit" value="${customer.id}">Edit</button></form>
+				   </td>
+				   <td>
+				   <form action="http://localhost:8080/Warsztat_samochodowy/DeleteCustomer" method="POST">
+				   <button type="submit" class="btn btn-primary" name="idToDelete" value="${customer.id}">Delete</button></form>
+				   </td>
 	    		</tr>
 	    	</c:forEach>
 	  	</tbody>
 	</table>
-<a href="http://localhost:8080/Warsztat_Samochodowy/LoadAllCustomers" class="btn btn-primary active" role="button" aria-pressed="true">Show all customers</a>
+<a href="http://localhost:8080/Warsztat_samochodowy/LoadAllCustomers" class="btn btn-primary active" role="button" aria-pressed="true">Show all customers</a>
 </body>
 </html>

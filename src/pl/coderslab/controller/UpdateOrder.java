@@ -85,10 +85,6 @@ public class UpdateOrder extends HttpServlet {
 		double costOfUsedParts = Double.parseDouble(cosOfUsedPartsStr);
 		order.setCostOfUsedParts(costOfUsedParts);
 
-		String costOfOperatingHourOfEmployeeStr = request.getParameter("costOfOperatingHourOfEmployee");
-		double costOfOperatingHourOfEmployee = Double.parseDouble(costOfOperatingHourOfEmployeeStr);
-		order.setCostOfOperatingHourOfEmployee(costOfOperatingHourOfEmployee);
-
 		String numberOfOperatingHoursStr = request.getParameter("numberOfOperatingHours");
 		int numberOfOperatingHours = Integer.parseInt(numberOfOperatingHoursStr);
 		order.setNumberOfOperatingHours(numberOfOperatingHours);

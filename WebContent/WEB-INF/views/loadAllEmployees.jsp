@@ -29,21 +29,21 @@
 				   <td>${employee.id}</td>
 				   <td>${employee.name}</td>
 				   <td>${employee.surname}</td>
-				   <td><form action="http://localhost:8080/Warsztat_Samochodowy/LoadEmployeeMoreInformation" method="post">
+				   <td><form action="http://localhost:8080/Warsztat_samochodowy/LoadEmployeeMoreInformation" method="post">
 				   <button type="submit" class="btn btn-primary" name="employeeId" value="${employee.id}">More</button></form></td>
-				   <td><form action="http://localhost:8080/Warsztat_Samochodowy/LoadEmployeeRepairs" method="post">
+				   <td><form action="http://localhost:8080/Warsztat_samochodowy/ShowEmployeeRepairs" method="post">
 				   <button type="submit" class="btn btn-primary" name="employeeId" value="${employee.id}">Repairs</button></form></td>
-				   <td><form action="http://localhost:8080/Warsztat_Samochodowy/DeleteEmployee" method="post">
+				   <td><form action="http://localhost:8080/Warsztat_samochodowy/DeleteEmployee" method="post">
 				   <button type="submit" class="btn btn-primary" name="employeeId" value="${employee.id}">Delete</button></form></td>
- 				   <td><form action="http://localhost:8080/Warsztat_Samochodowy/UpdateEmployee" method="get">
+ 				   <td><form action="http://localhost:8080/Warsztat_samochodowy/UpdateEmployee" method="get">
  				   <button type="submit" class="btn btn-primary" name="employeeId" value="${employee.id}">Edit</button></form></td>
 	    		</tr>
 	    	</c:forEach>
 	  	</tbody>
 	</table>
 	
-	<a href="http://localhost:8080/Warsztat_Samochodowy/AddEmployee" class="btn btn-primary active" role="button" aria-pressed="true">Add new employee</a>
-	<a href="http://localhost:8080/Warsztat_Samochodowy/index.jsp" class="btn btn-primary active" role="button" aria-pressed="true">Go back to main menu</a>
+	<a href="http://localhost:8080/Warsztat_samochodowy/AddEmployee" class="btn btn-primary active" role="button" aria-pressed="true">Add new employee</a>
+	<a href="http://localhost:8080/Warsztat_samochodowy/index.jsp" class="btn btn-primary active" role="button" aria-pressed="true">Go back to main menu</a>
 	
 </body>
 </html>
