@@ -44,6 +44,14 @@ public class Order {
 	public Order() {
 		
 	}
+	
+	//Constructor needed to show repairs of a given car
+	public Order(int id, String dateOfStartRepair, String descriptionOfTheRepair, int vehicleId) {
+		setId(id);
+		setDateOfStartRepair(dateOfStartRepair);
+		setDescriptionOfTheRepair(descriptionOfTheRepair);
+		setVehicleId(vehicleId);
+	}
 
 
 	public void setId(int id) {
