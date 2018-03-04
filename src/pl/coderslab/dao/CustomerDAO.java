@@ -97,4 +97,26 @@ public class CustomerDAO {
 		}
 
 	}
+
+	static public List<Customer> searchCustomerByLastName(String lastName) throws Exception {
+
+		List<Customer> customers = new ArrayList<>();
+		
+		try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+
+			String query = "SELECT * FROM CUSTOMER WHERE surname LIKE '%"+lastName+"%';";
+			PreparedStatement st = conn.prepareStatement(query);
+			ResultSet rs = st.executeQuery();
+
+			while (rs.next()) {
+				Customer customer = new Customer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4));
+				customers.add(customer);
+			}
+			
+			return customers;
+		} catch (Exception e) {
+			throw new Exception(e.getMessage());
+		}
+
+	}
 }
