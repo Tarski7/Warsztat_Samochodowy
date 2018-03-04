@@ -10,6 +10,14 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha/js/bootstrap.min.js"></script>
 </head>
 <body>
+	<form action="/Warsztat_samochodowy/LoadSearchedCustomers" method="GET">
+    <div class="row">
+	<div class="form-group col-lg-3">
+    	<label for="inputLastName">Search customers by last name:</label>
+    	<input type="text" class="form-control" id="inputLastName" name="lastName" placeholder="Enter last name">
+    	<button type="submit" class="btn btn-primary">Search</button>
+  	</div>
+	</form>
 	<table class="table table-inverse table-border">
 	  	<thead>
 	    	<tr>
@@ -39,5 +47,6 @@
 	    	</c:forEach>
 	  	</tbody>
 	</table>
+<a href="/Warsztat_samochodowy/LoadAllCustomers">Show all customers</a>
 </body>
 </html>
