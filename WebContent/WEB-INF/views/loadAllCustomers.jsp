@@ -50,6 +50,6 @@
 	    	</c:forEach>
 	  	</tbody>
 	</table>
-<a href="/Warsztat_samochodowy/LoadAllCustomers">Show all customers</a>
+<a href="http://localhost:8080/Warsztat_samochodowy/LoadAllCustomers" class="btn btn-primary active" role="button" aria-pressed="true">Show all customers</a>
 </body>
 </html>
