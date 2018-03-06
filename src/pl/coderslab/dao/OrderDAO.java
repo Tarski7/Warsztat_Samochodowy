@@ -1,7 +1,6 @@
 package pl.coderslab.dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -9,16 +8,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pl.coderslab.entity.Order;
+import pl.coderslab.service.DatabaseClient;
 
 public class OrderDAO {
 
-	static private final String URL = "jdbc:mysql://sql11.freemysqlhosting.net/sql11223305?useSSL=false";
-	static private final String USERNAME = "sql11223305";
-	static private final String PASSWORD = "Tt1GjmaCpL";
-
 	public static int addOrder(Order order) throws Exception {
-		try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+		try {
 
+			Connection conn = DatabaseClient.getConnection();
+			
 			String query = "INSERT INTO ORDERS VALUES(default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
 			PreparedStatement st = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
@@ -64,8 +62,10 @@ public class OrderDAO {
 
 	public static boolean deleteOrder(int id) throws Exception {
 
-		try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+		try {
 
+			Connection conn = DatabaseClient.getConnection();
+			
 			String query = "DELETE FROM ORDERS WHERE id=?";
 
 			PreparedStatement st = conn.prepareStatement(query);
@@ -83,7 +83,9 @@ public class OrderDAO {
 
 		List<Order> orders = new ArrayList<>();
 
-		try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+		try {
+			
+			Connection conn = DatabaseClient.getConnection();
 
 			PreparedStatement query = conn.prepareStatement("SELECT * FROM ORDERS;");
 			ResultSet rs = query.executeQuery();
@@ -106,7 +108,9 @@ public class OrderDAO {
 
 		Order order = null;
 
-		try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+		try {
+			
+			Connection conn = DatabaseClient.getConnection();
 
 			PreparedStatement query = conn.prepareStatement("SELECT * FROM ORDERS WHERE id=?;");
 			query.setInt(1, id);
@@ -127,8 +131,10 @@ public class OrderDAO {
 
 	static public boolean updateOrder(Order order) throws Exception {
 
-		try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+		try {
 
+			Connection conn = DatabaseClient.getConnection();
+			
 			String query = "UPDATE ORDERS SET " + "date_of_acceptance_for_repair=?, "
 					+ "planned_date_of_start_repair=?, " + "date_of_start_repair=?, " + "description_of_the_problem=?, "
 					+ "description_of_the_repair=?, " + "status=?, " + "cost_of_repair=?, " + "cost_of_used_parts=?, "
@@ -177,7 +183,9 @@ public class OrderDAO {
 
 	static public boolean updateOrderStatus(int id, String status) throws Exception {
 
-		try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+		try {
+			
+			Connection conn = DatabaseClient.getConnection();
 
 			String query = "UPDATE ORDERS SET status=? WHERE id=?";
 
@@ -198,7 +206,9 @@ public class OrderDAO {
 
 		List<Order> orders = new ArrayList<>();
 
-		try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+		try {
+			
+			Connection conn = DatabaseClient.getConnection();
 
 			PreparedStatement query = conn.prepareStatement("SELECT * FROM ORDERS WHERE status='in repair';");
 			ResultSet rs = query.executeQuery();

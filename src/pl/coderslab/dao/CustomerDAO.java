@@ -1,21 +1,16 @@
 package pl.coderslab.dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-//import java.util.Date;
 import java.util.List;
 
 import pl.coderslab.entity.Customer;
 import pl.coderslab.entity.Vehicle;
+import pl.coderslab.service.DatabaseClient;
 
 public class CustomerDAO {
-
-	static private final String URL = "jdbc:mysql://sql11.freemysqlhosting.net/sql11223305?useSSL=false";
-	static private final String USERNAME = "sql11223305";
-	static private final String PASSWORD = "Tt1GjmaCpL";
 
 	public static List<String> clientAttributesList(String name, String lastName, String dateofBirth) {
 
@@ -39,7 +34,9 @@ public class CustomerDAO {
 
 		List<Customer> customers = new ArrayList<>();
 
-		try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+		try {
+			
+			Connection conn = DatabaseClient.getConnection();
 
 			PreparedStatement query = conn.prepareStatement("SELECT * FROM CUSTOMER");
 			ResultSet rs = query.executeQuery();
@@ -60,8 +57,10 @@ public class CustomerDAO {
 
 		List<String> updateQueries = new ArrayList<>();
 
-		try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+		try {
 
+			Connection conn = DatabaseClient.getConnection();
+			
 			customer.toString();
 
 			int id = customer.getId();
@@ -103,7 +102,9 @@ public class CustomerDAO {
 
 		List<Customer> customers = new ArrayList<>();
 
-		try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+		try {
+			
+			Connection conn = DatabaseClient.getConnection();
 
 			String query = "SELECT * FROM CUSTOMER WHERE surname LIKE '%" + lastName + "%';";
 			PreparedStatement st = conn.prepareStatement(query);
@@ -124,7 +125,9 @@ public class CustomerDAO {
 
 		List<Vehicle> customerCars = new ArrayList<>();
 
-		try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+		try {
+			
+			Connection conn = DatabaseClient.getConnection();
 
 			String query = "SELECT VEHICLE.id, VEHICLE.model, VEHICLE.brand, VEHICLE.year_of_production, "
 					+ "VEHICLE.registration_number, VEHICLE.date_of_next_technical_inspection "
