@@ -1,7 +1,6 @@
 package pl.coderslab.dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -9,6 +8,7 @@ import java.util.List;
 
 import pl.coderslab.entity.Employee;
 import pl.coderslab.entity.Order;
+import pl.coderslab.service.DatabaseClient;
 
 public class EmployeeDAO {
 	
@@ -31,7 +31,9 @@ public class EmployeeDAO {
 		
 		List<Employee> employees = new ArrayList<>();
 		
-		try(Connection conn = DriverManager.getConnection("jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11223305?useSSL=false", "sql11223305", "Tt1GjmaCpL")) {
+		try {
+			
+			Connection conn = DatabaseClient.getConnection();
 			
 			PreparedStatement query = conn.prepareStatement("SELECT * FROM EMPLOYEE");
 			ResultSet rs = query.executeQuery();
@@ -53,7 +55,9 @@ public class EmployeeDAO {
 		
 		Employee employee = null;
 		
-		try(Connection conn = DriverManager.getConnection("jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11223305?useSSL=false", "sql11223305", "Tt1GjmaCpL")) {
+		try {
+			
+			Connection conn = DatabaseClient.getConnection();
 			
 			PreparedStatement query = conn.prepareStatement("SELECT * FROM EMPLOYEE WHERE id=?");
 			query.setInt(1, id);
@@ -73,7 +77,9 @@ public class EmployeeDAO {
 	
 	public static void updateEmployee(String query, List<String> params) {
 
-		try (Connection conn = DriverManager.getConnection("jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11223305?useSSL=false", "sql11223305", "Tt1GjmaCpL")) {
+		try {
+			
+			Connection conn = DatabaseClient.getConnection();
 
 			String name = params.get(0);
 			String surname = params.get(1);
@@ -101,8 +107,10 @@ public class EmployeeDAO {
 
 		List<Order> employeeRepairs = new ArrayList<>();
 
-		try (Connection conn = DriverManager.getConnection("jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11223305?useSSL=false", "sql11223305", "Tt1GjmaCpL")) {
+		try {
 
+			Connection conn = DatabaseClient.getConnection();
+			
 			String query = "SELECT ORDERS.id, ORDERS.date_of_acceptance_for_repair, "
 					+ "ORDERS.planned_date_of_start_repair, ORDERS.date_of_start_repair, "
 					+ "ORDERS.description_of_the_problem, ORDERS.description_of_the_repair, "
