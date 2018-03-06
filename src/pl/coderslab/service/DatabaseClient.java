@@ -14,10 +14,23 @@ public class DatabaseClient {
 	static private final String USERNAME = "sql11223305";
 	static private final String PASSWORD = "Tt1GjmaCpL";
 
+	
+	static public Connection getConnection() throws Exception {
+		
+		try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD))  {
+		
+		return conn;
+		
+		} catch (Exception e) {
+			throw new Exception(e.getMessage());
+		}
+	}
+	
+	
 	static public int add(String query, List<String> params) throws Exception {
 
-		try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
-
+			try {
+			Connection conn = getConnection();
 			PreparedStatement stmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 
 			for (int i = 1; i <= params.size(); i++) {
