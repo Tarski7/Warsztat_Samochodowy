@@ -34,6 +34,7 @@ public class LoadAllCustomers extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		List<Customer> customers = new ArrayList<>();
+		
 		try {
 		customers = CustomerDAO.loadAll();
 		request.setAttribute("customers", customers);
