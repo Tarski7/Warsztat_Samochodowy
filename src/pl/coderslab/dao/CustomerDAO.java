@@ -49,14 +49,14 @@ public class CustomerDAO {
 			}
 
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			throw new Exception(e.getMessage());
 		} finally {
 			try {
 				if (conn != null) {
 					conn.close();
 				}
 			} catch (Exception e) {
-				System.out.println(e.getMessage());
+				throw new Exception(e.getMessage());
 			}
 		}
 
@@ -114,7 +114,7 @@ public class CustomerDAO {
 					conn.close();
 				}
 			} catch (Exception e) {
-				System.out.println(e.getMessage());
+				throw new Exception(e.getMessage());
 			}
 		}
 
@@ -148,7 +148,7 @@ public class CustomerDAO {
 					conn.close();
 				}
 			} catch (Exception e) {
-				System.out.println(e.getMessage());
+				throw new Exception(e.getMessage());
 			}
 		}
 	}
@@ -188,7 +188,7 @@ public class CustomerDAO {
 					conn.close();
 				}
 			} catch (Exception e) {
-				System.out.println(e.getMessage());
+				throw new Exception(e.getMessage());
 			}
 		}
 	}
