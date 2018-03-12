@@ -40,9 +40,12 @@ public class LoadEmployeeMoreInformation extends HttpServlet {
 		
 		int id = Integer.parseInt(request.getParameter("employeeId"));
 		
+		try {
 		Employee employee = EmployeeDAO.load(id);
-		
 		request.setAttribute("employee", employee);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 		
 		getServletContext()
 		.getRequestDispatcher("/WEB-INF/views/loadEmployeeMoreInformation.jsp")
