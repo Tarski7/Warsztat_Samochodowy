@@ -30,7 +30,7 @@ public class DeleteCustomer extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		response.sendRedirect("/Warsztat_Samochodowy/LoadAllCustomers");
+		response.sendRedirect("/Warsztat_samochodowy/LoadAllCustomers");
 		
 	}
 

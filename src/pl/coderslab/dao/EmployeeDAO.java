@@ -27,13 +27,15 @@ public class EmployeeDAO {
 		return employees;
 	}
 		
-	static public List<Employee> loadAll() {
+	static public List<Employee> loadAll() throws Exception {
 		
 		List<Employee> employees = new ArrayList<>();
 		
+		Connection conn = null;
+		
 		try {
 			
-			Connection conn = DatabaseClient.getConnection();
+			conn = DatabaseClient.getConnection();
 			
 			PreparedStatement query = conn.prepareStatement("SELECT * FROM EMPLOYEE");
 			ResultSet rs = query.executeQuery();
@@ -45,19 +47,28 @@ public class EmployeeDAO {
 			}
 			
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			throw new Exception(e.getMessage());
+		} finally {
+			try {
+				if (conn != null) {
+					conn.close();
+				}
+			} catch(Exception e) {
+				throw new Exception(e.getMessage());
+			}
 		}
 		
 		return employees;
 	}
 		
-	static public Employee load(int id) {
+	static public Employee load(int id) throws Exception {
 		
 		Employee employee = null;
+		Connection conn = null;
 		
 		try {
 			
-			Connection conn = DatabaseClient.getConnection();
+			conn = DatabaseClient.getConnection();
 			
 			PreparedStatement query = conn.prepareStatement("SELECT * FROM EMPLOYEE WHERE id=?");
 			query.setInt(1, id);
@@ -70,16 +81,26 @@ public class EmployeeDAO {
 			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if (conn != null) {
+					conn.close();
+				}
+			} catch(Exception e) {
+				throw new Exception(e.getMessage());
+			}
 		}
 		
 		return employee;
 	}
 	
-	public static void updateEmployee(String query, List<String> params) {
+	public static void updateEmployee(String query, List<String> params) throws Exception {
 
+		Connection conn = null;
+		
 		try {
 			
-			Connection conn = DatabaseClient.getConnection();
+			conn = DatabaseClient.getConnection();
 
 			String name = params.get(0);
 			String surname = params.get(1);
@@ -99,6 +120,14 @@ public class EmployeeDAO {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				if (conn != null) {
+					conn.close();
+				}
+			} catch(Exception e) {
+				throw new Exception(e.getMessage());
+			}
 		}
 		
 	}
@@ -106,10 +135,11 @@ public class EmployeeDAO {
 	static public List<Order> showEmployeeRepairs(int id) throws Exception {
 
 		List<Order> employeeRepairs = new ArrayList<>();
-
+		Connection conn = null;
+		
 		try {
 
-			Connection conn = DatabaseClient.getConnection();
+			conn = DatabaseClient.getConnection();
 			
 			String query = "SELECT ORDERS.id, ORDERS.date_of_acceptance_for_repair, "
 					+ "ORDERS.planned_date_of_start_repair, ORDERS.date_of_start_repair, "
@@ -133,6 +163,14 @@ public class EmployeeDAO {
 			
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());
+		} finally {
+			try {
+				if (conn != null) {
+					conn.close();
+				}
+			} catch(Exception e) {
+				throw new Exception(e.getMessage());
+			}
 		}
 	}
 	

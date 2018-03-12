@@ -27,13 +27,14 @@ public class VehicleDAO {
 		return vehicles;
 	}
 
-	static public List<Vehicle> loadAll() {
+	static public List<Vehicle> loadAll() throws Exception {
 
 		List<Vehicle> vehicles = new ArrayList<>();
+		Connection conn = null;
 
 		try {
 			
-			Connection conn = DatabaseClient.getConnection();
+			conn = DatabaseClient.getConnection();
 			
 			PreparedStatement query = conn.prepareStatement("SELECT * FROM VEHICLE");
 			ResultSet rs = query.executeQuery();
@@ -46,19 +47,28 @@ public class VehicleDAO {
 			}
 
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			throw new Exception(e.getMessage());
+		} finally {
+			try {
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e) {
+				throw new Exception(e.getMessage());
+			}
 		}
 
 		return vehicles;
 	}
 
-	static public Vehicle load(int id) {
+	static public Vehicle load(int id) throws Exception {
 
 		Vehicle vehicle = null;
+		Connection conn = null;
 
 		try {
 			
-			Connection conn = DatabaseClient.getConnection();
+			conn = DatabaseClient.getConnection();
 
 			PreparedStatement query = conn.prepareStatement("SELECT * FROM VEHICLE WHERE id=?");
 			query.setInt(1, id);
@@ -71,17 +81,27 @@ public class VehicleDAO {
 			}
 
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			throw new Exception(e.getMessage());
+		} finally {
+			try {
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e) {
+				throw new Exception(e.getMessage());
+			}
 		}
 
 		return vehicle;
 	}
 
-	public static void updateVehicle(String query, List<String> params) {
+	public static void updateVehicle(String query, List<String> params) throws Exception {
 
+		Connection conn = null;
+		
 		try {
 			
-			Connection conn = DatabaseClient.getConnection();
+			conn = DatabaseClient.getConnection();
 
 			String model = params.get(0);
 			String brand = params.get(1);
@@ -100,19 +120,29 @@ public class VehicleDAO {
 			ps.executeUpdate();
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			throw new Exception(e.getMessage());
+		} finally {
+			try {
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e) {
+				throw new Exception(e.getMessage());
+			}
 		}
 
 	}
 
-	static public List<Order> showRepairHistory(int vehicleId) {
+	static public List<Order> showRepairHistory(int vehicleId) throws Exception {
 		List<Order> repairHistory = new ArrayList<>();
+		Connection conn = null;
+		
 		
 		String query = "SELECT id, date_of_start_repair, description_of_the_repair FROM ORDERS WHERE vehicle_id=?;";
 		
 		try {
 			
-			Connection conn = DatabaseClient.getConnection();
+			conn = DatabaseClient.getConnection();
 			
 			PreparedStatement st = conn.prepareStatement(query);
 			st.setInt(1, vehicleId);
@@ -126,7 +156,15 @@ public class VehicleDAO {
 			
 			
 		} catch (Exception e) {
-			e.printStackTrace();
+			throw new Exception(e.getMessage());
+		} finally {
+			try {
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e) {
+				throw new Exception(e.getMessage());
+			}
 		}
 		
 		return repairHistory;

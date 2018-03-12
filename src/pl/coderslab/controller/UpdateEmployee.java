@@ -34,9 +34,12 @@ public class UpdateEmployee extends HttpServlet {
 		
 		int id = Integer.parseInt(request.getParameter("employeeId"));
 		
-		Employee employee = EmployeeDAO.load(id);
-		
-		request.setAttribute("employee", employee);
+		try {
+			Employee employee = EmployeeDAO.load(id);
+			request.setAttribute("employee", employee);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 		
 		getServletContext()
 		.getRequestDispatcher("/WEB-INF/views/updateEmployeeForm.jsp")

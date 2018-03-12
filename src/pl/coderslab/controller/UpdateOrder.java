@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
 import pl.coderslab.dao.OrderDAO;
 import pl.coderslab.entity.Order;
 
@@ -40,13 +39,14 @@ public class UpdateOrder extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.setAttribute("idToEditFromOrders", id);
 
-		Order order = OrderDAO.loadChosenOrder(id);
+		try {
+			Order order = OrderDAO.loadChosenOrder(id);
+			request.setAttribute("order", order);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
-		request.setAttribute("order", order);
-
-		getServletContext()
-		.getRequestDispatcher("/WEB-INF/views/updateOrderForm.jsp")
-		.forward(request, response);
+		getServletContext().getRequestDispatcher("/WEB-INF/views/updateOrderForm.jsp").forward(request, response);
 
 	}
 

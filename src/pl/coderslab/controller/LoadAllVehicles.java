@@ -33,10 +33,13 @@ public class LoadAllVehicles extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		try {
 		List<Vehicle> vehicles = new ArrayList<>();
 		vehicles = VehicleDAO.loadAll();
-		
 		request.setAttribute("vehicles", vehicles);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		getServletContext()
 		.getRequestDispatcher("/WEB-INF/views/loadAllVehicles.jsp")

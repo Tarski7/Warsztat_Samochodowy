@@ -33,8 +33,12 @@ public class LoadDetailsOfOrder extends HttpServlet {
 		
 		int id = Integer.parseInt(request.getParameter("id"));
 		
+		try {
 		Order order = OrderDAO.loadChosenOrder(id);
 		request.setAttribute("order", order);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		getServletContext().
 		getRequestDispatcher("/WEB-INF/views/loadDetailsOfOrder.jsp").

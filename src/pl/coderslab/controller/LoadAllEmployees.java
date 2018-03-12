@@ -19,34 +19,39 @@ import pl.coderslab.entity.Employee;
 @WebServlet("/LoadAllEmployees")
 public class LoadAllEmployees extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public LoadAllEmployees() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		List<Employee> employees = new ArrayList<>();
-		employees = EmployeeDAO.loadAll();
-		
-		request.setAttribute("employees", employees);
-		
-		getServletContext()
-		.getRequestDispatcher("/WEB-INF/views/loadAllEmployees.jsp")
-		.forward(request, response);
+	public LoadAllEmployees() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		try {
+			List<Employee> employees = new ArrayList<>();
+			employees = EmployeeDAO.loadAll();
+			request.setAttribute("employees", employees);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		getServletContext().getRequestDispatcher("/WEB-INF/views/loadAllEmployees.jsp").forward(request, response);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
