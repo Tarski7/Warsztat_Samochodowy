@@ -57,7 +57,7 @@ public class UpdateCustomer extends HttpServlet {
 		String newDateOfBirth = request.getParameter("newDateOfBirth");
 
 		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-		
+
 		Customer customer = new Customer();
 		customer.setId(idToEdit);
 
@@ -77,8 +77,12 @@ public class UpdateCustomer extends HttpServlet {
 		}
 
 		System.out.println(customer.toString());
-		
-		CustomerDAO.updateCustomer(customer);
+
+		try {
+			CustomerDAO.updateCustomer(customer);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 		doGet(request, response);
 	}

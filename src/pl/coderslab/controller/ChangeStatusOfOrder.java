@@ -35,9 +35,12 @@ public class ChangeStatusOfOrder extends HttpServlet {
 
 		int id = Integer.parseInt(request.getParameter("id"));
 
-		Order order = OrderDAO.loadChosenOrder(id);
-
-		request.setAttribute("order", order);
+		try {
+			Order order = OrderDAO.loadChosenOrder(id);
+			request.setAttribute("order", order);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 		getServletContext().getRequestDispatcher("/WEB-INF/views/changeStatusForm.jsp").forward(request, response);
 
@@ -50,7 +53,6 @@ public class ChangeStatusOfOrder extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		
 		int id = Integer.parseInt(request.getParameter("id"));
 		String status = request.getParameter("status");
 
@@ -59,9 +61,9 @@ public class ChangeStatusOfOrder extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		response.sendRedirect("/Warsztat_samochodowy/LoadAllOrders");
-		
+
 	}
 
 }

@@ -19,34 +19,40 @@ import pl.coderslab.entity.Order;
 @WebServlet("/LoadCurrentRepairs")
 public class LoadCurrentRepairs extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public LoadCurrentRepairs() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		List<Order> employeeRepairs = new ArrayList<>();
-		employeeRepairs = OrderDAO.loadCurrentOrders();
-		
-		request.setAttribute("employeeRepairs", employeeRepairs);
-		
-		getServletContext().
-		getRequestDispatcher("/index.jsp").
-		forward(request, response);
+	public LoadCurrentRepairs() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		List<Order> employeeRepairs = new ArrayList<>();
+
+		try {
+			employeeRepairs = OrderDAO.loadCurrentOrders();
+			request.setAttribute("employeeRepairs", employeeRepairs);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
