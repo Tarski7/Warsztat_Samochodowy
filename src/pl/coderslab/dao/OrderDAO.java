@@ -13,10 +13,12 @@ import pl.coderslab.service.DatabaseClient;
 public class OrderDAO {
 
 	public static int addOrder(Order order) throws Exception {
-		try {
 
-			Connection conn = DatabaseClient.getConnection();
-			
+		Connection conn = null;
+
+		try {
+			conn = DatabaseClient.getConnection();
+
 			String query = "INSERT INTO ORDERS VALUES(default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
 			PreparedStatement st = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
@@ -30,18 +32,17 @@ public class OrderDAO {
 			st.setDouble(7, order.getCostOfRepair());
 			st.setDouble(8, order.getCostOfUsedParts());
 
-			
-			//Get cost of operating hour of an employee for another table
+			// Get cost of operating hour of an employee for another table
 			String query2 = "SELECT cost_of_operating_hour FROM EMPLOYEE WHERE id=?;";
 			PreparedStatement st2 = conn.prepareStatement(query2);
 			st2.setInt(1, order.getEmployeeId());
 			ResultSet rs2 = st2.executeQuery();
 			double costOfOperatingHourOfEmployee = 0.0;
-			
-			while(rs2.next()) {
+
+			while (rs2.next()) {
 				costOfOperatingHourOfEmployee = rs2.getDouble(1);
 			}
-			
+
 			st.setDouble(9, costOfOperatingHourOfEmployee);
 			st.setInt(10, order.getNumberOfOperatingHours());
 			st.setInt(11, order.getEmployeeId());
@@ -57,15 +58,25 @@ public class OrderDAO {
 
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());
+		} finally {
+			try {
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e) {
+				throw new Exception(e.getMessage());
+			}
 		}
 	}
 
 	public static boolean deleteOrder(int id) throws Exception {
 
+		Connection conn = null;
+		
 		try {
 
-			Connection conn = DatabaseClient.getConnection();
-			
+			conn = DatabaseClient.getConnection();
+
 			String query = "DELETE FROM ORDERS WHERE id=?";
 
 			PreparedStatement st = conn.prepareStatement(query);
@@ -76,16 +87,25 @@ public class OrderDAO {
 
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());
+		} finally {
+			try {
+				if(conn != null) {
+					conn.close();
+				}
+			} catch (Exception e) {
+				throw new Exception(e.getMessage());
+			}
 		}
 	}
 
-	public static List<Order> loadAll() {
+	public static List<Order> loadAll() throws Exception {
 
 		List<Order> orders = new ArrayList<>();
-
+		Connection conn = null;
+		
 		try {
-			
-			Connection conn = DatabaseClient.getConnection();
+
+			conn = DatabaseClient.getConnection();
 
 			PreparedStatement query = conn.prepareStatement("SELECT * FROM ORDERS;");
 			ResultSet rs = query.executeQuery();
@@ -98,19 +118,28 @@ public class OrderDAO {
 			}
 
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			throw new Exception(e.getMessage());
+		} finally {
+			try {
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e) {
+				throw new Exception(e.getMessage());
+			}
 		}
 
 		return orders;
 	}
 
-	static public Order loadChosenOrder(int id) {
+	static public Order loadChosenOrder(int id) throws Exception {
 
 		Order order = null;
-
+		Connection conn = null;
+		
 		try {
-			
-			Connection conn = DatabaseClient.getConnection();
+
+			conn = DatabaseClient.getConnection();
 
 			PreparedStatement query = conn.prepareStatement("SELECT * FROM ORDERS WHERE id=?;");
 			query.setInt(1, id);
@@ -123,7 +152,15 @@ public class OrderDAO {
 			}
 
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			throw new Exception(e.getMessage());
+		} finally {
+			try {
+				if (conn != null) {
+					conn.close();
+				}
+			} catch(Exception e) {
+				throw new Exception(e.getMessage());
+			}
 		}
 
 		return order;
@@ -131,10 +168,12 @@ public class OrderDAO {
 
 	static public boolean updateOrder(Order order) throws Exception {
 
+		Connection conn = null;
+		
 		try {
 
-			Connection conn = DatabaseClient.getConnection();
-			
+			conn = DatabaseClient.getConnection();
+
 			String query = "UPDATE ORDERS SET " + "date_of_acceptance_for_repair=?, "
 					+ "planned_date_of_start_repair=?, " + "date_of_start_repair=?, " + "description_of_the_problem=?, "
 					+ "description_of_the_repair=?, " + "status=?, " + "cost_of_repair=?, " + "cost_of_used_parts=?, "
@@ -150,20 +189,20 @@ public class OrderDAO {
 			st.setString(6, order.getStatus());
 			st.setDouble(7, order.getCostOfRepair());
 			st.setDouble(8, order.getCostOfUsedParts());
-			
+
 			String query2 = "SELECT cost_of_operating_hour FROM EMPLOYEE WHERE id=?;";
 			PreparedStatement st2 = conn.prepareStatement(query2);
 			st2.setInt(1, order.getEmployeeId());
 			ResultSet rs2 = st2.executeQuery();
-			
+
 			System.out.println(st2.toString());
-			
+
 			double costOfOperatingHourOfEmployee = 0.0;
-			
-			while(rs2.next()) {
+
+			while (rs2.next()) {
 				costOfOperatingHourOfEmployee = rs2.getDouble(1);
 			}
-			
+
 			st.setDouble(9, costOfOperatingHourOfEmployee);
 			st.setInt(10, order.getNumberOfOperatingHours());
 			st.setInt(11, order.getEmployeeId());
@@ -178,14 +217,24 @@ public class OrderDAO {
 
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());
+		} finally {
+			try {
+				if(conn != null) {
+					conn.close();
+				}
+			} catch (Exception e) {
+				throw new Exception(e.getMessage());
+			}
 		}
 	}
 
 	static public boolean updateOrderStatus(int id, String status) throws Exception {
 
+		Connection conn = null;
+		
 		try {
-			
-			Connection conn = DatabaseClient.getConnection();
+
+			conn = DatabaseClient.getConnection();
 
 			String query = "UPDATE ORDERS SET status=? WHERE id=?";
 
@@ -199,16 +248,25 @@ public class OrderDAO {
 
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());
+		} finally {
+			try {
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e) {
+				throw new Exception(e.getMessage());
+			}
 		}
 	}
-	
-	public static List<Order> loadCurrentOrders() {
+
+	public static List<Order> loadCurrentOrders() throws Exception {
 
 		List<Order> orders = new ArrayList<>();
+		Connection conn = null;
 
 		try {
-			
-			Connection conn = DatabaseClient.getConnection();
+
+			conn = DatabaseClient.getConnection();
 
 			PreparedStatement query = conn.prepareStatement("SELECT * FROM ORDERS WHERE status='in repair';");
 			ResultSet rs = query.executeQuery();
@@ -221,7 +279,15 @@ public class OrderDAO {
 			}
 
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			throw new Exception(e.getMessage());
+		} finally {
+			try {
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e) {
+				throw new Exception(e.getMessage());
+			}
 		}
 
 		return orders;
