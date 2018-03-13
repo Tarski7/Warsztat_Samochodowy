@@ -19,7 +19,7 @@ id INT AUTO_INCREMENT,
 name VARCHAR(255),
 surname VARCHAR(255),
 date_of_birth DATE,
-PRIMARY_KEY(id));
+PRIMARY KEY(id));
 
 -- Table VEHICLE schema
 CREATE TABLE VEHICLE(

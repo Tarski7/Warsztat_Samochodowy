@@ -9,7 +9,7 @@
 <body>
 	<h3>Update the customer data</h3>
 	<h5>Leave the field blank if you do not want to update the value</h5>
-	<form action="/Warsztat_Samochodowy/UpdateCustomer" method="POST">
+	<form action="/Warsztat_samochodowy/UpdateCustomer" method="POST">
 		Insert new name:
 		<input type="text" name="newName"><br>
 		Insert new last name:

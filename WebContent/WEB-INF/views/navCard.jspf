@@ -2,9 +2,9 @@
   <div class="card-block">
     <h3 class="card-title">Car Service</h3>
     <p class="card-text">Navigation menu</p>
-    <a href="http://localhost:8080/Warsztat_Samochodowy/LoadAllEmployees" class="btn btn-primary">Employees</a>
-    <a href="http://localhost:8080/Warsztat_Samochodowy/LoadAllVehicles" class="btn btn-primary">Vehicles</a>
-    <a href="http://localhost:8080/Warsztat_Samochodowy/LoadAllCustomers" class="btn btn-primary">Customers</a>
-    <a href="http://localhost:8080/Warsztat_Samochodowy/LoadAllOrders" class="btn btn-primary">Orders</a>
+    <a href="http://localhost:8080/Warsztat_samochodowy/LoadAllEmployees" class="btn btn-primary">Employees</a>
+    <a href="http://localhost:8080/Warsztat_samochodowy/LoadAllVehicles" class="btn btn-primary">Vehicles</a>
+    <a href="http://localhost:8080/Warsztat_samochodowy/LoadAllCustomers" class="btn btn-primary">Customers</a>
+    <a href="http://localhost:8080/Warsztat_samochodowy/LoadAllOrders" class="btn btn-primary">Orders</a>
   </div>
 </div>

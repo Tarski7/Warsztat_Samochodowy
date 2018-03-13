@@ -36,10 +36,10 @@
 				   <td>${repair.numberOfOperatingHours}</td>
 				   <td>${repair.employeeId}</td>
 				   <td>${repair.vehicleId}</td>
-				   <td><form action="/Warsztat_Samochodowy/UpdateOrder" method="GET">
+				   <td><form action="/Warsztat_samochodowy/UpdateOrder" method="GET">
   						<button type="submit" name="idToEdit" value="${repair.id}" class="btn-link">Edit</button>
 						</form>
-						<form action="/Warsztat_Samochodowy/DeleteOrder" method="POST">
+						<form action="/Warsztat_samochodowy/DeleteOrder" method="POST">
   						<button type="submit" name="idToDelete" value="${repair.id}" class="btn-link">Delete</button>
 						</form></td>
 	    		</tr>

@@ -14,7 +14,7 @@
   		<strong>Well done!</strong> You have successfully updated the vehicle!
 	</div>
 	
-	<a href="http://localhost:8080/Warsztat_Samochodowy/index.jsp">Go back to main menu</a>
+	<a href="http://localhost:8080/Warsztat_samochodowy/index.jsp">Go back to main menu</a>
 
 </body>
 </html>
