@@ -4,17 +4,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-	crossorigin="anonymous">
-<title>Add new customer</title>
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+		crossorigin="anonymous">
+	<title>Add new customer</title>
 </head>
 <body>
+	<div class="container">
 	<form action="" method="POST" class="form-horizontal">
 		<fieldset>
-
-
 			<!-- change col-sm-N to reflect how you would like your column spacing (http://getbootstrap.com/css/#forms-control-sizes) -->
 
 
@@ -50,10 +49,9 @@
 					<button type="submit" class="btn btn-primary">Submit</button>
 				</div>
 			</div>
-
-
 		</fieldset>
 	</form>
+	</div>
 
 
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
