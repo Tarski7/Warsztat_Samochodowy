@@ -43,7 +43,7 @@
 	</table>
 	
 	<a href="http://localhost:8080/Warsztat_samochodowy/AddEmployee" class="btn btn-primary active" role="button" aria-pressed="true">Add new employee</a>
-	<a href="http://localhost:8080/Warsztat_samochodowy/index.jsp" class="btn btn-primary active" role="button" aria-pressed="true">Go back to main menu</a>
+	<a href="http://localhost:8080/Warsztat_samochodowy/LoadCurrentRepairs" class="btn btn-primary active" role="button" aria-pressed="true">Go back to main menu</a>
 	
 </body>
 </html>

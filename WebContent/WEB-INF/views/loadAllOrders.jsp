@@ -59,5 +59,7 @@
 	    	</c:forEach>
 	  	</tbody>
 	</table>
+	<a href="http://localhost:8080/Warsztat_samochodowy/AddOrder" class="btn btn-primary active" role="button" aria-pressed="true">Add new order</a>
+	<a href="http://localhost:8080/Warsztat_samochodowy/LoadCurrentRepairs" class="btn btn-primary active" role="button" aria-pressed="true">Go back to main menu</a>
 </body>
 </html>

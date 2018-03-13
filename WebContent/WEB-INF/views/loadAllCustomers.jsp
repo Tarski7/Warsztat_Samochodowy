@@ -55,6 +55,8 @@
 	    	</c:forEach>
 	  	</tbody>
 	</table>
-<a href="http://localhost:8080/Warsztat_samochodowy/LoadAllCustomers" class="btn btn-primary active" role="button" aria-pressed="true">Show all customers</a>
+	<a href="http://localhost:8080/Warsztat_samochodowy/LoadAllCustomers" class="btn btn-primary active" role="button" aria-pressed="true">Show all customers</a>
+	<a href="http://localhost:8080/Warsztat_samochodowy/AddCustomer" class="btn btn-primary active" role="button" aria-pressed="true">Add new customer</a>
+	<a href="http://localhost:8080/Warsztat_samochodowy/LoadCurrentRepairs" class="btn btn-primary active" role="button" aria-pressed="true">Go back to main menu</a>
 </body>
 </html>
