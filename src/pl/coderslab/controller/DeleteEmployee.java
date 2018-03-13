@@ -44,13 +44,16 @@ public class DeleteEmployee extends HttpServlet {
 		
 		try {
 			DatabaseClient.delete(query, id);
+			getServletContext()
+		 	.getRequestDispatcher("/WEB-INF/views/alertDeleteEmployee.jsp")
+		 	.forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
+			getServletContext()
+		 	.getRequestDispatcher("/WEB-INF/views/alertFail.jsp")
+		 	.forward(request, response);
 		}
-		
-		getServletContext()
-	 	.getRequestDispatcher("/WEB-INF/views/alertDeleteEmployee.jsp")
-	 	.forward(request, response);
+	
 	}
 
 }

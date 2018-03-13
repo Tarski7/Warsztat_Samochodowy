@@ -14,7 +14,7 @@
   		<strong>Well done!</strong> You have successfully added the vehicle!
 	</div>
 	
-	<a href="http://localhost:8080/Warsztat_samochodowy/index.jsp">Go back to main menu</a>
+	<a href="http://localhost:8080/Warsztat_samochodowy/LoadCurrentRepairs" class="btn btn-primary active" role="button" aria-pressed="true">Go back to main menu</a>
 
 </body>
 </html>

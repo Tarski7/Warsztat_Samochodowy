@@ -10,8 +10,8 @@
 </head>
 <body>
 
-	<div class="alert alert-success" role="alert">
-  		<strong>Well done!</strong> You have successfully deleted the vehicle!
+	<div class="alert alert-danger" role="alert">
+  		<strong>Oh no!</strong> Something went wrong!
 	</div>
 	
 	<a href="http://localhost:8080/Warsztat_samochodowy/LoadCurrentRepairs" class="btn btn-primary active" role="button" aria-pressed="true">Go back to main menu</a>

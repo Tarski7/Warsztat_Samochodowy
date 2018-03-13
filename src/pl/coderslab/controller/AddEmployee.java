@@ -56,15 +56,16 @@ public class AddEmployee extends HttpServlet {
 		
 		try {
 			DatabaseClient.add(query, employees);
-			
-			
+			getServletContext()
+		 	.getRequestDispatcher("/WEB-INF/views/alertAddEmployee.jsp")
+		 	.forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
+			getServletContext()
+		 	.getRequestDispatcher("/WEB-INF/views/alertFail.jsp")
+		 	.forward(request, response);
 		}
 		
-		getServletContext()
-	 	.getRequestDispatcher("/WEB-INF/views/alertAddEmployee.jsp")
-	 	.forward(request, response);
 	}
 
 }

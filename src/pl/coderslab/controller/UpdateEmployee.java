@@ -66,14 +66,17 @@ public class UpdateEmployee extends HttpServlet {
 		
 		try {
 			EmployeeDAO.updateEmployee(query, params);
-			
+			getServletContext()
+		 	.getRequestDispatcher("/WEB-INF/views/alertUpdateEmployee.jsp")
+		 	.forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
+			getServletContext()
+		 	.getRequestDispatcher("/WEB-INF/views/alertFail.jsp")
+		 	.forward(request, response);
 		}
 		
-		getServletContext()
-	 	.getRequestDispatcher("/WEB-INF/views/alertUpdateEmployee.jsp")
-	 	.forward(request, response);
+
 	}
 
 }

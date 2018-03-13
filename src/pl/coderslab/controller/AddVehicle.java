@@ -56,13 +56,16 @@ public class AddVehicle extends HttpServlet {
 		
 		try {
 			DatabaseClient.add(query, vehicles);
+			getServletContext()
+		 	.getRequestDispatcher("/WEB-INF/views/alertAddVehicle.jsp")
+		 	.forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
+			getServletContext()
+		 	.getRequestDispatcher("/WEB-INF/views/alertFail.jsp")
+		 	.forward(request, response);
 		}
 		
-		getServletContext()
-	 	.getRequestDispatcher("/WEB-INF/views/alertAddVehicle.jsp")
-	 	.forward(request, response);
 	}
 
 }
