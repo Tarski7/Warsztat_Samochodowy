@@ -30,13 +30,15 @@ public class CustomerDAO {
 		return query;
 	}
 
-	public static List<Customer> loadAll() {
+	public static List<Customer> loadAll() throws Exception {
 
 		List<Customer> customers = new ArrayList<>();
 
+		Connection conn = null;
+
 		try {
-			
-			Connection conn = DatabaseClient.getConnection();
+
+			conn = DatabaseClient.getConnection();
 
 			PreparedStatement query = conn.prepareStatement("SELECT * FROM CUSTOMER");
 			ResultSet rs = query.executeQuery();
@@ -47,20 +49,30 @@ public class CustomerDAO {
 			}
 
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			throw new Exception(e.getMessage());
+		} finally {
+			try {
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e) {
+				throw new Exception(e.getMessage());
+			}
 		}
 
 		return customers;
 	}
 
-	public static boolean updateCustomer(Customer customer) {
+	public static boolean updateCustomer(Customer customer) throws Exception {
 
 		List<String> updateQueries = new ArrayList<>();
 
+		Connection conn = null;
+
 		try {
 
-			Connection conn = DatabaseClient.getConnection();
-			
+			conn = DatabaseClient.getConnection();
+
 			customer.toString();
 
 			int id = customer.getId();
@@ -90,10 +102,20 @@ public class CustomerDAO {
 				st.executeUpdate();
 			}
 
+			// TODO: fix customer update - make it only one query.
+
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
+		} finally {
+			try {
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e) {
+				throw new Exception(e.getMessage());
+			}
 		}
 
 	}
@@ -102,9 +124,11 @@ public class CustomerDAO {
 
 		List<Customer> customers = new ArrayList<>();
 
+		Connection conn = null;
+		
 		try {
-			
-			Connection conn = DatabaseClient.getConnection();
+
+			conn = DatabaseClient.getConnection();
 
 			String query = "SELECT * FROM CUSTOMER WHERE surname LIKE '%" + lastName + "%';";
 			PreparedStatement st = conn.prepareStatement(query);
@@ -118,6 +142,14 @@ public class CustomerDAO {
 			return customers;
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());
+		} finally {
+			try {
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e) {
+				throw new Exception(e.getMessage());
+			}
 		}
 	}
 
@@ -125,28 +157,39 @@ public class CustomerDAO {
 
 		List<Vehicle> customerCars = new ArrayList<>();
 
+		Connection conn = null;
+		
 		try {
-			
-			Connection conn = DatabaseClient.getConnection();
+
+			conn = DatabaseClient.getConnection();
 
 			String query = "SELECT VEHICLE.id, VEHICLE.model, VEHICLE.brand, VEHICLE.year_of_production, "
 					+ "VEHICLE.registration_number, VEHICLE.date_of_next_technical_inspection "
 					+ "FROM CUSTOMER JOIN VEHICLE ON CUSTOMER.id = VEHICLE.customer_id WHERE CUSTOMER.id=?;";
-			
+
 			PreparedStatement st = conn.prepareStatement(query);
 			st.setInt(1, id);
-			
+
 			ResultSet rs = st.executeQuery();
 
 			while (rs.next()) {
-				Vehicle vehicle = new Vehicle(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDate(4), rs.getString(5), rs.getDate(6));
+				Vehicle vehicle = new Vehicle(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDate(4),
+						rs.getString(5), rs.getDate(6));
 				customerCars.add(vehicle);
 			}
 
 			return customerCars;
-			
+
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());
+		} finally {
+			try {
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e) {
+				throw new Exception(e.getMessage());
+			}
 		}
 	}
 }

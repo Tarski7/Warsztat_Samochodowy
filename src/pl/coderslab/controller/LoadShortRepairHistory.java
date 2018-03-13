@@ -35,10 +35,13 @@ public class LoadShortRepairHistory extends HttpServlet {
 		
 		int vehicleId = Integer.parseInt(request.getParameter("vehicleId"));
 		
+		try {
 		List<Order> repairHistory = new ArrayList<>();
-		
 		repairHistory = VehicleDAO.showRepairHistory(vehicleId);
 		request.setAttribute("repairHistory", repairHistory);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		getServletContext().
 		getRequestDispatcher("/WEB-INF/views/loadShortRepairHistory.jsp").

@@ -20,36 +20,41 @@ import pl.coderslab.entity.Vehicle;
 @WebServlet("/UpdateVehicle")
 public class UpdateVehicle extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public UpdateVehicle() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		int id = Integer.parseInt(request.getParameter("vehicleId"));
-		
-		Vehicle vehicle = VehicleDAO.load(id);
-		
-		request.setAttribute("vehicle", vehicle);
-		
-		getServletContext()
-		.getRequestDispatcher("/WEB-INF/views/updateVehicleForm.jsp")
-		.forward(request, response);
+	public UpdateVehicle() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		int id = Integer.parseInt(request.getParameter("vehicleId"));
+
+		try {
+			Vehicle vehicle = VehicleDAO.load(id);
+			request.setAttribute("vehicle", vehicle);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		getServletContext().getRequestDispatcher("/WEB-INF/views/updateVehicleForm.jsp").forward(request, response);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		String id = request.getParameter("id");
 		String model = request.getParameter("model");
 		String brand = request.getParameter("brand");
@@ -57,22 +62,21 @@ public class UpdateVehicle extends HttpServlet {
 		String registrationNumber = request.getParameter("registrationNumber");
 		String dateOfNextTechnicalInspection = request.getParameter("dateOfNextTechnicalInspection");
 		String customerId = request.getParameter("customerId");
-		
+
 		final String query = "UPDATE VEHICLE SET model=?, brand=?, year_of_production=?, registration_number=?, "
 				+ "date_of_next_technical_inspection=?, customer_id=? WHERE id=" + id + ";";
-		
-		List<String> params = VehicleDAO.addVehicle(model, brand, yearOfProduction, registrationNumber, dateOfNextTechnicalInspection, customerId);
-		
+
+		List<String> params = VehicleDAO.addVehicle(model, brand, yearOfProduction, registrationNumber,
+				dateOfNextTechnicalInspection, customerId);
+
 		try {
 			VehicleDAO.updateVehicle(query, params);
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		getServletContext()
-	 	.getRequestDispatcher("/WEB-INF/views/alertUpdateEmployee.jsp")
-	 	.forward(request, response);
+
+		getServletContext().getRequestDispatcher("/WEB-INF/views/alertUpdateEmployee.jsp").forward(request, response);
 	}
 
 }

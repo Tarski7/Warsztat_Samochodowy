@@ -34,9 +34,13 @@ public class LoadAllCustomers extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		List<Customer> customers = new ArrayList<>();
-		customers = CustomerDAO.loadAll();
 		
+		try {
+		customers = CustomerDAO.loadAll();
 		request.setAttribute("customers", customers);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 		
 		getServletContext().
 		getRequestDispatcher("/WEB-INF/views/loadAllCustomers.jsp").
