@@ -9,4 +9,5 @@ Application consists of pages:
 - Order page displays list of all orders sorted from the newest with the possibility of displaying details of the order.
 - Employee page displays all employees with the possibilty of displaying all details of the employee and currently carried out repairs.
 - Vehicle page displays all vehicles serviced with all details.
+
 Additional functionality is a generating reports for employees of number of man-hours worked and profit report from date to date.
